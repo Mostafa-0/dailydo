@@ -38,12 +38,12 @@ function Login() {
   };
 
   return (
-    <div className="auth-page lg:grid lg:grid-cols-2 gap-12 px-6 lg:px-12">
+    <div className="auth-page min-h-svh grid lg:grid-cols-2 gap-12 p-6 lg:p-12">
       <Intro />
 
       <div className="flex flex-col justify-center">
         <form className="grid gap-4" onSubmit={handleSubmit}>
-          <h1 className="text-2xl uppercase font-bold">Log In</h1>
+          <h2 className="text-2xl uppercase font-bold">Log In</h2>
           <label htmlFor="email" className="sr-only">
             Email
           </label>

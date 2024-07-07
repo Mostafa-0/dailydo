@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { BtnPrimary } from "./Buttons";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
@@ -50,23 +50,13 @@ function Signup() {
     }
   };
 
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
-        setError(null);
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [error]);
-
   return (
-    <div className="auth-page lg:grid lg:grid-cols-2 gap-12 px-6 lg:px-12">
+    <div className="auth-page min-h-svh grid lg:grid-cols-2 gap-12 p-6 lg:p-12">
       <Intro />
 
       <div className="flex flex-col justify-center">
         <form className="grid gap-4" onSubmit={handleSubmit}>
-          <h1 className="text-2xl uppercase font-bold">Sign Up</h1>
+          <h2 className="text-2xl uppercase font-bold">Sign Up</h2>
           <label htmlFor="username" className="sr-only">
             Name
           </label>

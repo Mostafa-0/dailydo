@@ -1,10 +1,10 @@
 const mainStyles =
-  "disabled:bg-gray-400 rounded-md py-[8px] px-5 text-sm uppercase font-medium flex justify-center items-center transition duration-200 ease-in-out text-white focus:outline-none";
+  "disabled:bg-gray-400 rounded-md px-5 py-2 text-xs md:text-sm uppercase font-medium flex justify-center items-center transition duration-200 ease-in-out text-white focus:outline-none";
 
-export function BtnPrimary({ children, onClick, type, disabled, style }) {
+export function BtnPrimary({ children, onClick, type, disabled, className }) {
   return (
     <button
-      className={`${mainStyles} ${style} bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800`}
+      className={`${mainStyles} ${className} bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800`}
       onClick={onClick}
       type={type}
       disabled={disabled}

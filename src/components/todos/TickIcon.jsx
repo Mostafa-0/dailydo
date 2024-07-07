@@ -3,7 +3,7 @@ const TickIcon = ({isChecked}) => {
   return (
     <div>
       <svg
-        className={`size-6 md:size-8 cursor-pointer transition-all duration-300 ease-in-out ${
+        className={`size-7 md:size-8 cursor-pointer transition-all duration-300 ease-in-out ${
           isChecked ? "transform scale-110" : ""
         }`}
         viewBox="0 0 100 100"
