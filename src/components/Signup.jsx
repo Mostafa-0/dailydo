@@ -2,12 +2,12 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { BtnPrimary } from "./Buttons";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Intro from "./Intro";
 import Input from "./Input";
 
 function Signup() {
-  const { signup } = useContext(AuthContext);
+  const { currentUser, signup } = useContext(AuthContext);
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -15,6 +15,10 @@ function Signup() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
 
   const handleChange = () => {
     setError(null);

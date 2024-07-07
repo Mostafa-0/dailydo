@@ -2,34 +2,21 @@ import { useContext, useRef, useState } from "react";
 import { BtnPrimary } from "./Buttons";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Intro from "./Intro";
 import Input from "./Input";
 
 function Login() {
-  const inpStyles = `
-    p-3
-    bg-white 
-    font-medium
-    dark:bg-neutral-800
-    text-gray-700 
-    dark:text-gray-200
-    rounded-lg
-    shadow-md 
-    focus:outline-none 
-    focus:ring-2 
-    focus:ring-emerald-600 
-    focus:border-transparent 
-    transition 
-    duration-300 
-    ease-in-out
-  `;
-  const { login } = useContext(AuthContext);
+  const { currentUser, login } = useContext(AuthContext);
   const emailRef = useRef();
   const passwordRef = useRef();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
 
   const handleChange = () => {
     setError(null);
