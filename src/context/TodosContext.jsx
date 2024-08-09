@@ -3,7 +3,6 @@ import { createContext, useEffect, useState } from "react";
 export const TodosContext = createContext();
 
 export const TodosProvider = ({ children }) => {
-  const [editTodoId, setEditTodoId] = useState(null);
   const [todos, setTodos] = useState(() => {
     const localValue = localStorage.getItem("TODOS");
     if (localValue == null) return [];
@@ -33,7 +32,6 @@ export const TodosProvider = ({ children }) => {
           : t
       )
     );
-    setEditTodoId(null);
   };
 
   const deleteTodo = (id) => {
@@ -43,8 +41,6 @@ export const TodosProvider = ({ children }) => {
   return (
     <TodosContext.Provider
       value={{
-        editTodoId,
-        setEditTodoId,
         todos,
         setTodos,
         addTodo,

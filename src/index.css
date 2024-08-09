@@ -18,6 +18,16 @@ body {
   background-position: center;
 }
 
+body {
+  border-image: fill 1
+    linear-gradient(120deg, hsla(0, 0%, 83%, 0.5), hsla(0, 0%, 83%, 0.5));
+}
+
+.dark body {
+  border-image: fill 1
+    linear-gradient(120deg, hsla(0, 0%, 0%, 0.6), hsla(0, 0%, 0%, 0.6));
+}
+
 body:has(.auth-page) {
   background-image: url(./assets/blob.svg);
   background-size: cover;

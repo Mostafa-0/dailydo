@@ -5,7 +5,7 @@ import { TodosContext } from "../../context/TodosContext";
 import { PencilSquareIcon, CalendarDaysIcon } from "@heroicons/react/24/solid";
 
 function ToDoItem({ todo }) {
-  const { editTodoId, setEditTodoId, editTodo } = useContext(TodosContext);
+  const { editTodo } = useContext(TodosContext);
   const [status, setStatus] = useState(todo.status);
   const [showModal, setShowModal] = useState(false);
 
@@ -74,7 +74,6 @@ function ToDoItem({ todo }) {
           className="text-emerald-600 hover:brightness-125"
           title="Edit"
           onClick={() => {
-            setEditTodoId(todo.id);
             setShowModal(true);
           }}
         >
@@ -87,13 +86,7 @@ function ToDoItem({ todo }) {
         ></div>
       </li>
 
-      {showModal && (
-        <EditTodo
-          todo={todo}
-          setShowModal={setShowModal}
-          editTodoId={editTodoId}
-        />
-      )}
+      {showModal && <EditTodo todo={todo} setShowModal={setShowModal} />}
     </>
   );
 }

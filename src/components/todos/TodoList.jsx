@@ -54,15 +54,15 @@ function TodoList() {
         To Do&apos;s
       </h2>
 
-      <div className="flex items-center flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1">
         {/* Status filtering */}
-        <div className="grow">
+        <div className="grid w-full max-w-40">
           <label htmlFor="select-status">Status: </label>
           <select
             id="select-status"
             defaultValue={"all"}
             onChange={handleStatusChange}
-            className="dark:bg-neutral-800 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm w-full"
+            className="dark:bg-neutral-800 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm"
           >
             <option value="all" className="font-medium">
               All
@@ -76,13 +76,13 @@ function TodoList() {
           </select>
         </div>
         {/* Priority filtering */}
-        <div className="grow">
+        <div className="grid w-full max-w-40">
           <label htmlFor="select-priority">Priority: </label>
           <select
             id="select-priority"
             defaultValue={"all"}
             onChange={handlePriorityChange}
-            className="dark:bg-neutral-800 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm w-full"
+            className="dark:bg-neutral-800 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm"
           >
             <option value="all" className="font-medium">
               All
@@ -99,13 +99,13 @@ function TodoList() {
           </select>
         </div>
         {/* Due date sorting */}
-        <div className="grow">
+        <div className="grid w-full max-w-40">
           <label htmlFor="select-sort">Due Date: </label>
           <select
             id="select-sort"
             defaultValue={"none"}
             onChange={handleSortChange}
-            className="dark:bg-neutral-800 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm w-full"
+            className="dark:bg-neutral-800 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm"
           >
             <option value="none" className="font-medium">
               None
@@ -120,15 +120,15 @@ function TodoList() {
         </div>
       </div>
 
-      <div className="bg-neutral-300 bg-opacity-60 dark:bg-black dark:bg-opacity-60 p-4 rounded-lg mt-4">
+      <div className="mt-4">
         <TodoForm />
         {todos.length === 0 && (
           <p className="w-fit m-auto mt-12">
             Looks like you have no todos, start adding one!
           </p>
         )}
-        {filteredTodos.length === 0 && (
-          <p className="w-fit m-auto mt-12">No matching todos were found.</p>
+        {todos.length !== 0 && filteredTodos.length === 0 && (
+          <p className="w-fit m-auto mt-12">No matching todos.</p>
         )}
         <ul className="grid gap-4">
           {filteredTodos.map((todo) => (

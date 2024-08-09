@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { HabitsContext } from "../../context/HabitsContext";
 import HabitForm from "./HabitForm";
 import HabitItem from "./HabitItem";
-import { BtnCustom, BtnSecondary } from "../Buttons";
+import { BtnCustom } from "../Buttons";
 
 function HabitList() {
   const { habits, setHabits } = useContext(HabitsContext);
@@ -61,12 +61,15 @@ function HabitList() {
           Strong
         </BtnCustom>
       </div>
-      <div className="bg-neutral-300 bg-opacity-60 dark:bg-black dark:bg-opacity-60 p-4 rounded-lg mt-4">
+      <div className="mt-4">
         <HabitForm />
         {habits.length === 0 && (
           <p className="w-fit m-auto mt-12">
             Looks like you have no habits, start adding one!
           </p>
+        )}
+        {habits.length !== 0 && filteredHabits.length === 0 && (
+          <p className="w-fit m-auto mt-12">No matching habits.</p>
         )}
         <ul className="grid gap-4">
           {filteredHabits.map((habit) => (

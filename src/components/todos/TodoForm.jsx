@@ -22,6 +22,7 @@ function TodoForm() {
       }, 4000);
     } else {
       addTodo({
+        id: crypto.randomUUID(),
         title: title,
         description: "",
         priority: "medium",

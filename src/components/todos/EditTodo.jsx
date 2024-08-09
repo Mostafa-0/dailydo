@@ -4,7 +4,7 @@ import { BtnCustom, BtnDanger, BtnPrimary } from "../Buttons";
 import { TodosContext } from "../../context/TodosContext";
 import { Input, Textarea } from "../Inputs";
 
-function UpdateTodo({ todo, setShowModal }) {
+function EditTodo({ todo, setShowModal }) {
   const { editTodo, deleteTodo } = useContext(TodosContext);
   const [data, setData] = useState({
     ...todo,
@@ -145,4 +145,4 @@ function UpdateTodo({ todo, setShowModal }) {
   );
 }
 
-export default UpdateTodo;
+export default EditTodo;
