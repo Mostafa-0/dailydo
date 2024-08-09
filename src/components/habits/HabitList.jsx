@@ -61,7 +61,7 @@ function HabitList() {
           Strong
         </BtnCustom>
       </div>
-      <div className="mt-4">
+      <div className="mt-[18px]">
         <HabitForm />
         {habits.length === 0 && (
           <p className="w-fit m-auto mt-12">
