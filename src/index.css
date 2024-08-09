@@ -20,12 +20,12 @@ body {
 
 body {
   border-image: fill 1
-    linear-gradient(120deg, hsla(0, 0%, 83%, 0.4), hsla(0, 0%, 83%, 0.4));
+    linear-gradient(hsla(0, 0%, 83%, 0.4), hsla(0, 0%, 83%, 0.4));
 }
 
 .dark body {
   border-image: fill 1
-    linear-gradient(120deg, hsla(0, 0%, 0%, 0.6), hsla(0, 0%, 0%, 0.6));
+    linear-gradient(hsla(0, 0%, 0%, 0.6), hsla(0, 0%, 0%, 0.6));
 }
 
 body:has(.auth-page) {
@@ -46,7 +46,7 @@ body:has(.auth-page)::before {
 
 .dark body:has(.auth-page) {
   border-image: fill 1
-    linear-gradient(120deg, hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.4));
+    linear-gradient(hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.4));
 }
 
 .dark input[type="date"]::-webkit-calendar-picker-indicator {
