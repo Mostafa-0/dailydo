@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import { HabitsContext } from "../../context/HabitsContext";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import Input from "../Input";
+import { Input } from "../Inputs";
 
 function HabitForm() {
-  const { showModal, addHabit, error, setError } = useContext(HabitsContext);
+  const { showModal, addHabit } = useContext(HabitsContext);
   const [title, setTitle] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -14,7 +15,21 @@ function HabitForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addHabit(title);
+    if (title.trim().length < 1) {
+      setError("Oops, you can't make an empty habit!");
+      setTimeout(() => {
+        setError("");
+      }, 4000);
+      return;
+    }
+    addHabit({
+      id: crypto.randomUUID(),
+      title: title,
+      description: "",
+      date: new Date().toISOString().split("T")[0],
+      positive: 0,
+      negative: 0,
+    });
     setTitle("");
   };
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 
-const ThemeMode = () => {
+const ThemeToggler = ({style}) => {
   const [theme, setTheme] = useState(
     () => localStorage.getItem("theme") || "light"
   );
@@ -22,7 +22,7 @@ const ThemeMode = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed bottom-4 right-4 size-9 rounded-full z-10 bg-white dark:bg-gray-900 flex items-center justify-center p-1 transition-colors duration-300"
+      className={`${style} size-8 rounded-full z-10 bg-white dark:bg-gray-900 flex items-center justify-center p-1 transition-colors duration-300`}
       aria-label="Toggle theme"
     >
       <div className="relative size-5">
@@ -41,4 +41,4 @@ const ThemeMode = () => {
   );
 };
 
-export default ThemeMode;
+export default ThemeToggler;

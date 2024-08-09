@@ -1,12 +1,12 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { BtnDanger, BtnSecondary } from "./Buttons";
+import { BtnDanger, BtnPrimary } from "../components/Buttons";
 import {
   UserCircleIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
-import Input from "./Input";
+import { Input } from "../components/Inputs";
 
 function EditProfile() {
   const { currentUser, editUsername, editEmail, setMessage } =
@@ -85,9 +85,9 @@ function EditProfile() {
             <Link to={"/profile"}>
               <BtnDanger type={"button"}>Cancel</BtnDanger>
             </Link>
-            <BtnSecondary type={"submit"} disabled={loading}>
+            <BtnPrimary type={"submit"} disabled={loading}>
               Save
-            </BtnSecondary>
+            </BtnPrimary>
           </div>
         </div>
 

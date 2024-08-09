@@ -33,13 +33,16 @@ function Modal({ setShowModal }) {
             <XMarkIcon className="size-6" />
           </button>
         </div>
-        <p className="mb-8">Are you sure you want to delete your account?</p>
-        {/* <p>This will permanently delete your account and all of its data!</p> */}
+        <p className="mb-2">Are you sure you want to delete your account?</p>
         <p className="text-red-500 font-medium flex items-center gap-1">
           <ExclamationCircleIcon className="size-5" />
-          This action is irreversible
+          This will permanently delete your account and all of its data.
         </p>
-        <BtnDanger onClick={handleDeleteAccount} style={"mt-2 w-full"}>
+        <p className="text-red-500 font-medium flex items-center gap-1">
+          <ExclamationCircleIcon className="size-5" />
+          This action is irreversible.
+        </p>
+        <BtnDanger onClick={handleDeleteAccount} className={"w-full mt-4"}>
           Delete Account
         </BtnDanger>
       </div>

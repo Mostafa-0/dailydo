@@ -1,10 +1,10 @@
 import { useContext, useRef, useState } from "react";
-import { BtnPrimary } from "./Buttons";
-import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import Intro from "./Intro";
-import Input from "./Input";
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import { BtnPrimary } from "../components/Buttons";
+import Intro from "../components/Intro";
+import { Input } from "../components/Inputs";
 
 function Login() {
   const { currentUser, login } = useContext(AuthContext);

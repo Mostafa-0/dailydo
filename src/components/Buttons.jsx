@@ -1,10 +1,10 @@
 const mainStyles =
-  "disabled:bg-gray-400 rounded-md px-5 py-2 text-xs md:text-sm uppercase font-medium flex justify-center items-center transition duration-200 ease-in-out text-white focus:outline-none";
+  "disabled:bg-gray-400 rounded-md px-4 py-2 text-xs uppercase font-medium flex justify-center items-center tracking-wider transition duration-200 ease-in-out focus:outline-none";
 
 export function BtnPrimary({ children, onClick, type, disabled, className }) {
   return (
     <button
-      className={`${mainStyles} ${className} bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800`}
+      className={`${mainStyles} ${className} bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white`}
       onClick={onClick}
       type={type}
       disabled={disabled}
@@ -14,10 +14,10 @@ export function BtnPrimary({ children, onClick, type, disabled, className }) {
   );
 }
 
-export function BtnSecondary({ children, onClick, type, disabled, style }) {
+export function BtnSecondary({ children, onClick, type, disabled, className }) {
   return (
     <button
-      className={`${mainStyles} ${style} bg-neutral-700 hover:bg-neutral-800 active:bg-neutral-900`}
+      className={`${mainStyles} ${className} bg-white hover:bg-neutral-50 active:bg-neutral-100 dark:bg-neutral-700 dark:hover:bg-neutral-800 dark:active:bg-neutral-900 text-black dark:text-white`}
       onClick={onClick}
       type={type}
       disabled={disabled}
@@ -27,10 +27,23 @@ export function BtnSecondary({ children, onClick, type, disabled, style }) {
   );
 }
 
-export function BtnDanger({ children, onClick, type, disabled, style }) {
+export function BtnDanger({ children, onClick, type, disabled, className }) {
   return (
     <button
-      className={`${mainStyles} ${style} bg-red-600 hover:bg-red-700 active:bg-red-800`}
+      className={`${mainStyles} ${className} bg-red-600 hover:bg-red-700 active:bg-red-800 text-white`}
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
+}
+
+export function BtnCustom({ children, onClick, type, disabled, className }) {
+  return (
+    <button
+      className={`${mainStyles} ${className}`}
       onClick={onClick}
       type={type}
       disabled={disabled}

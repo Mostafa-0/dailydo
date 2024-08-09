@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { BtnDanger, BtnPrimary, BtnSecondary } from "./Buttons";
-import DeleteConfirmationModal from "./DeleteConfirmationModal";
-import Popup from "./Popup";
+import { BtnDanger, BtnSecondary } from "../components/Buttons";
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
+import Popup from "../components/Popup";
 import {
   CheckBadgeIcon,
   ExclamationCircleIcon,
@@ -22,7 +22,7 @@ function Profile() {
     }
   }, [currentUser]);
 
-  const verifyEmail = () => {
+  const handleVerifyEmail = () => {
     if (currentUser) {
       sendEmailVerification(currentUser)
         .then(() => {
@@ -55,23 +55,24 @@ function Profile() {
 
   return (
     <div className="profile">
-      <div className="p-4 md:p-8 mt-8 tracking-wide min-h-96 max-w-3xl">
+      <div className="p-4 md:p-8 mt-8 tracking-wide min-h-96 max-w-4xl">
         <div className="flex justify-between items-center flex-wrap gap-4 mb-8">
           <div className="flex gap-2 items-center">
             <UserCircleIcon className="size-7 md:size-9" />
             <h1 className="text-2xl md:text-3xl font-semibold">Profile</h1>
           </div>
           <Link to={"/edit-profile"}>
-            <BtnPrimary>Edit Profile</BtnPrimary>
+            <BtnSecondary>Edit Profile</BtnSecondary>
           </Link>
         </div>
         <div className="font-medium grid gap-5">
-          <div className="p-2 border-b-2 border-emerald-600 dark:border-emerald-500">
-            <h3 className="text-emerald-600 dark:text-emerald-500 ">Name</h3>
+          <div className="font-medium p-2 border-b-[1px] border-black border-opacity-20 dark:border-white dark:border-opacity-10">
+            <h3 className="text-neutral-500 dark:text-neutral-400">Name</h3>
             <p className="sm:text-lg">{currentUser.displayName}</p>
           </div>
-          <div className="p-2 border-b-2 border-emerald-600 dark:border-emerald-500">
-            <h3 className="text-emerald-600 dark:text-emerald-500">Email</h3>
+
+          <div className="font-medium p-2 border-b-[1px] border-black border-opacity-20 dark:border-white dark:border-opacity-10">
+            <h3 className="text-neutral-500 dark:text-neutral-400">Email</h3>
             <div className="sm:text-lg flex justify-between items-center flex-wrap gap-x-2">
               {currentUser.email}{" "}
               <div className="text-sm opacity-90">
@@ -80,15 +81,16 @@ function Profile() {
                     <CheckBadgeIcon className="size-4" /> Verified
                   </div>
                 ) : (
-                  <div className="flex items-center gap-1 text-orange-600">
+                  <div className="flex items-center gap-1 text-orange-500 dark:text-orange-400">
                     <ExclamationCircleIcon className="size-4" /> Not Verified
                   </div>
                 )}
               </div>
             </div>
           </div>
-          <div className="p-2 border-b-2 border-emerald-600 dark:border-emerald-500">
-            <h3 className="text-emerald-600 dark:text-emerald-500">
+
+          <div className="font-medium p-2 border-b-[1px] border-black border-opacity-20 dark:border-white dark:border-opacity-10">
+            <h3 className="text-neutral-500 dark:text-neutral-400">
               Joined in
             </h3>
             <p className="sm:text-lg">
@@ -96,10 +98,11 @@ function Profile() {
             </p>
           </div>
         </div>
+
         {!currentUser.emailVerified && (
           <button
-            onClick={verifyEmail}
-            className="mt-6 text-sm font-semibold border-b rounded-sm text-indigo-500 border-indigo-500"
+            onClick={handleVerifyEmail}
+            className="mt-4 ml-2 text-sm font-semibold border-b rounded-sm text-emerald-500 border-emerald-500"
           >
             Verify Email
           </button>
@@ -107,7 +110,7 @@ function Profile() {
         {message && (
           <Popup message={message} onClose={() => setMessage(null)} />
         )}
-        <div className="mt-6 flex justify-between flex-wrap gap-4">
+        <div className="mt-6 flex flex-wrap gap-4">
           <Link to={"/update-password"}>
             <BtnSecondary>Change Password</BtnSecondary>
           </Link>

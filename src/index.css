@@ -7,11 +7,31 @@
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
 body {
   background-image: url(./assets/circle-scatter-haikei.svg);
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
+  background-position: center;
+}
+
+body:has(.auth-page) {
+  background-image: url(./assets/blob.svg);
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(140px);
+}
+
+.dark body:has(.auth-page) {
+  border-image: fill 1
+    linear-gradient(120deg, hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.4));
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }
 
 input[type="number"] {

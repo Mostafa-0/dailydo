@@ -1,10 +1,10 @@
 import { useContext, useRef, useState } from "react";
-import { BtnPrimary } from "./Buttons";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import Intro from "./Intro";
-import Input from "./Input";
+import { BtnPrimary } from "../components/Buttons";
+import Intro from "../components/Intro";
+import { Input } from "../components/Inputs";
 
 function Signup() {
   const { currentUser, signup } = useContext(AuthContext);
@@ -43,7 +43,6 @@ function Signup() {
       );
       navigate("/");
     } catch (error) {
-      // console.error(error.message);
       setError("Something went wrong, please try again later");
     } finally {
       setLoading(false);

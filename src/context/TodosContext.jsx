@@ -1,54 +1,39 @@
 import { createContext, useEffect, useState } from "react";
 
-export const DataContext = createContext();
+export const TodosContext = createContext();
 
-export const DataProvider = ({ children }) => {
+export const TodosProvider = ({ children }) => {
   const [editTodoId, setEditTodoId] = useState(null);
   const [todos, setTodos] = useState(() => {
     const localValue = localStorage.getItem("TODOS");
     if (localValue == null) return [];
     return JSON.parse(localValue);
   });
-  const [error, setError] = useState("");
 
   useEffect(() => {
     localStorage.setItem("TODOS", JSON.stringify(todos));
   }, [todos]);
 
-  const validateData = (title) => {
-    if (title.trim().length < 1) {
-      setError("Oops, you can't make an empty todo! 😐");
-      setTimeout(() => {
-        setError("");
-      }, 3000);
-      return false;
-    }
-    return true;
-  };
-
-  const addTodo = (title) => {
-    if (validateData(title)) {
-      setTodos((prevTodos) => [
-        {
-          id: crypto.randomUUID(),
-          title: title,
-          date: new Date().toISOString().split("T")[0],
-          completed: false,
-        },
-        ...prevTodos,
-      ]);
-    }
+  const addTodo = (todo) => {
+    setTodos((prevTodos) => [todo, ...prevTodos]);
   };
 
   const editTodo = (id, data) => {
-    if (validateData(data.title)) {
-      setTodos((prevTodos) =>
-        prevTodos.map((t) =>
-          t.id === id ? { ...t, title: data.title, date: data.date } : t
-        )
-      );
-      setEditTodoId(null);
-    }
+    setTodos((prevTodos) =>
+      prevTodos.map((t) =>
+        t.id === id
+          ? {
+              ...t,
+              title: data.title,
+              description: data.description,
+              dueDate: data.dueDate,
+              priority: data.priority,
+              status: data.status,
+            }
+          : t
+      )
+    );
+    setEditTodoId(null);
   };
 
   const deleteTodo = (id) => {
@@ -56,7 +41,7 @@ export const DataProvider = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider
+    <TodosContext.Provider
       value={{
         editTodoId,
         setEditTodoId,
@@ -65,11 +50,9 @@ export const DataProvider = ({ children }) => {
         addTodo,
         editTodo,
         deleteTodo,
-        error,
-        setError,
       }}
     >
       {children}
-    </DataContext.Provider>
+    </TodosContext.Provider>
   );
 };

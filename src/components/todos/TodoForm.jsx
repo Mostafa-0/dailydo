@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import { DataContext } from "../../context/TodosContext";
+import { TodosContext } from "../../context/TodosContext";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import Input from "../Input";
+import { Input } from "../Inputs";
 
 function TodoForm() {
-  const { showModal, addTodo, error, setError } = useContext(DataContext);
+  const { showModal, addTodo } = useContext(TodosContext);
   const [title, setTitle] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -14,14 +15,29 @@ function TodoForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodo(title);
-    setTitle("");
+    if (title.trim().length < 1) {
+      setError("Oops, you can't make an empty todo!");
+      setTimeout(() => {
+        setError("");
+      }, 4000);
+    } else {
+      addTodo({
+        title: title,
+        description: "",
+        priority: "medium",
+        dueDate: "",
+        status: "pending",
+      });
+      setTitle("");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="mb-6">
       <div className="relative">
-        <label htmlFor="addTodo" className="sr-only">Add Todo</label>
+        <label htmlFor="addTodo" className="sr-only">
+          Add Todo
+        </label>
         <Input
           type="text"
           id="addTodo"

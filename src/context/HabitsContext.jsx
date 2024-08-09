@@ -9,57 +9,31 @@ export const HabitsProvider = ({ children }) => {
     if (localValue == null) return [];
     return JSON.parse(localValue);
   });
-  const [error, setError] = useState("");
 
   useEffect(() => {
     localStorage.setItem("HABITS", JSON.stringify(habits));
   }, [habits]);
 
-  const validateData = (title) => {
-    if (title.trim().length < 1) {
-      setError(
-        "A habit of doing nothing isn't that impressive don't you think ? 😧"
-      );
-      setTimeout(() => {
-        setError("");
-      }, 3000);
-      return false;
-    }
-    return true;
-  };
-
-  const addHabit = (title) => {
-    if (validateData(title)) {
-      setHabits((prevHabits) => [
-        {
-          id: crypto.randomUUID(),
-          title: title,
-          date: new Date().toISOString().split("T")[0],
-          positive: 0,
-          negative: 0,
-        },
-        ...prevHabits,
-      ]);
-    }
+  const addHabit = (habit) => {
+    setHabits((prevHabits) => [habit, ...prevHabits]);
   };
 
   const editHabit = (id, data) => {
-    if (validateData(data.title)) {
-      setHabits((prevHabits) =>
-        prevHabits.map((t) =>
-          t.id === id
-            ? {
-                ...t,
-                title: data.title,
-                date: data.date,
-                positive: Number(data.positive),
-                negative: Number(data.negative),
-              }
-            : t
-        )
-      );
-      setEditHabitId(null);
-    }
+    setHabits((prevHabits) =>
+      prevHabits.map((t) =>
+        t.id === id
+          ? {
+              ...t,
+              title: data.title,
+              description: data.description,
+              date: data.date,
+              positive: Number(data.positive),
+              negative: Number(data.negative),
+            }
+          : t
+      )
+    );
+    setEditHabitId(null);
   };
 
   const positiveCount = (id) => {
@@ -92,8 +66,6 @@ export const HabitsProvider = ({ children }) => {
         addHabit,
         editHabit,
         deleteHabit,
-        error,
-        setError,
         positiveCount,
         negativeCount,
       }}

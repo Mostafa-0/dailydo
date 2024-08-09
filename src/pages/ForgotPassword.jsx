@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { BtnPrimary } from "./Buttons";
-import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import Input from "./Input";
-import Popup from "./Popup";
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import { BtnPrimary } from "../components/Buttons";
+import { Input } from "../components/Inputs";
+import Popup from "../components/Popup";
 
 function ForgotPassword() {
   const emailRef = useRef();
