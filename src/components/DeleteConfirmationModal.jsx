@@ -34,8 +34,8 @@ function Modal({ setShowModal }) {
           </button>
         </div>
         <p className="mb-2">Are you sure you want to delete your account?</p>
-        <p className="text-red-500 font-medium flex items-center gap-1">
-          <ExclamationCircleIcon className="size-5" />
+        <p className="text-red-500 font-medium">
+          <ExclamationCircleIcon className="size-5 inline mr-1" />
           This will permanently delete your account and all of its data.
         </p>
         <p className="text-red-500 font-medium flex items-center gap-1">

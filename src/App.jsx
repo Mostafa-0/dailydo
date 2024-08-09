@@ -32,7 +32,7 @@ const Layout = () => {
       </div>
       <Footer />
       {noAuthPaths.includes(location.pathname) && (
-        <ThemeToggler style={"fixed bottom-3 right-4"} />
+        <ThemeToggler style={"fixed bottom-4 right-4"} />
       )}
     </>
   );
