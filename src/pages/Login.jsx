@@ -30,7 +30,6 @@ function Login() {
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/");
     } catch (error) {
-      // console.error("Login Error:", error.message);
       setError("Invalid email or password. Please try again.");
     } finally {
       setLoading(false);
@@ -38,7 +37,7 @@ function Login() {
   };
 
   return (
-    <div className="auth-page min-h-svh grid lg:grid-cols-2 gap-12 p-6 lg:p-12">
+    <div className="auth-page min-h-svh grid lg:grid-cols-2 gap-y-2 gap-x-12 p-6 lg:p-12">
       <Intro />
 
       <div className="flex flex-col justify-center">
