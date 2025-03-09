@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { BtnDanger, BtnSecondary } from "../components/Buttons";
+import { BtnDanger, BtnSecondary } from "../components/ui/Buttons";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
-import Popup from "../components/Popup";
+import Popup from "../components/ui/Popup";
+import Loader from "../components/ui/loader";
 import {
   CheckBadgeIcon,
   ExclamationCircleIcon,
@@ -50,7 +51,11 @@ function Profile() {
   }, [message]);
 
   if (loading) {
-    return <div className="text-center mt-8">Loading...</div>;
+    return (
+      <div className="text-center mt-8">
+        <Loader className="min-h-[80svh]" size={28} />
+      </div>
+    );
   }
 
   return (

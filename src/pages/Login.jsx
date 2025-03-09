@@ -2,9 +2,10 @@ import { useContext, useRef, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { BtnPrimary } from "../components/Buttons";
-import Intro from "../components/Intro";
-import { Input } from "../components/Inputs";
+import { BtnPrimary } from "../components/ui/Buttons";
+import Intro from "../components/sections/Intro";
+import { Input } from "../components/ui/Inputs";
+import Loader from "../components/ui/loader";
 
 function Login() {
   const { currentUser, login } = useContext(AuthContext);
@@ -54,6 +55,7 @@ function Login() {
             placeholder="Email"
             onChange={handleChange}
             required
+            autoFocus
           />
           <label htmlFor="password" className="sr-only">
             Password
@@ -69,12 +71,12 @@ function Login() {
           />
 
           <BtnPrimary type="submit" disabled={loading}>
-            {loading ? "Logging In..." : "Log In"}
+            {loading ? <Loader size={16} /> : "Log In"}
           </BtnPrimary>
 
           {error && (
-            <div className="text-sm font-medium text-red-500 uppercase flex gap-1">
-              <ExclamationCircleIcon className="size-5 text-red-500" />
+            <div className="text-sm font-medium text-red-500 flex items-baseline gap-1">
+              <ExclamationCircleIcon className="size-3 text-red-500" />
               {error}
             </div>
           )}

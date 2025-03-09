@@ -1,10 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { BtnPrimary } from "../components/ui/Buttons";
+import { Input } from "../components/ui/Inputs";
+import Popup from "../components/ui/Popup";
+import Loader from "../components/ui/loader";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { BtnPrimary } from "../components/Buttons";
-import { Input } from "../components/Inputs";
-import Popup from "../components/Popup";
 
 function ForgotPassword() {
   const emailRef = useRef();
@@ -57,12 +58,12 @@ function ForgotPassword() {
             required
           />
           <BtnPrimary type="submit" disabled={loading}>
-            {loading ? "Loading..." : "Reset"}
+            {loading ? <Loader size={16} /> : "Reset"}
           </BtnPrimary>
 
           {error && (
-            <div className="text-sm font-medium text-red-500 uppercase flex gap-1">
-              <ExclamationCircleIcon className="size-5 text-red-500" />
+            <div className="text-sm font-medium text-red-500 flex items-baseline gap-1">
+              <ExclamationCircleIcon className="size-3 text-red-500" />
               {error}
             </div>
           )}

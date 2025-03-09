@@ -1,13 +1,11 @@
-import TodoList from "../components/todos/TodoList";
-import HabitList from "../components/habits/HabitList";
+import DailiesList from "../components/sections/DailiesList";
+import TodoList from "../components/sections/TodoList";
 
 function Home() {
   return (
-    <div className="home">
-      <div className="lg:flex mb-6">
-        <TodoList />
-        <HabitList />
-      </div>
+    <div className="home h-full grid items-start md:grid-cols-2 gap-8">
+      <DailiesList />
+      <TodoList />
     </div>
   );
 }

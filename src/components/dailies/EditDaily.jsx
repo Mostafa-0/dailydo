@@ -1,15 +1,15 @@
 import { useContext, useState } from "react";
-import { TodosContext } from "../../context/TodosContext";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import { BtnCustom, BtnDanger, BtnPrimary } from "../ui/Buttons";
 import { Input, Textarea } from "../ui/Inputs";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { DailiesContext } from "../../context/DailiesContext";
 
-function EditTodo({ todo, setShowModal }) {
-  const { editTodo, deleteTodo } = useContext(TodosContext);
+function EditDaily({ daily, setShowModal }) {
+  const { editDaily, deleteDaily } = useContext(DailiesContext);
   const [data, setData] = useState({
-    ...todo,
+    ...daily,
   });
-  const [priority, setPriority] = useState(todo.priority || "medium");
+  const [priority, setPriority] = useState(daily.priority || "medium");
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -31,7 +31,7 @@ function EditTodo({ todo, setShowModal }) {
       return;
     }
     try {
-      await editTodo(todo.id, {
+      await editDaily(daily.id, {
         ...data,
         priority,
         dueDate: data.dueDate ? data.dueDate : "",
@@ -46,7 +46,7 @@ function EditTodo({ todo, setShowModal }) {
     <div className="overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 md:p-4">
       <div className="modal bg-neutral-100 dark:bg-neutral-900 p-6 rounded-lg shadow-lg max-w-md w-full">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-2xl capitalize font-semibold">Edit To Do</h3>
+          <h3 className="text-2xl capitalize font-semibold">Edit Task</h3>
           <button
             onClick={() => setShowModal(null)}
             className="text-neutral-900 dark:text-white hover:text-red-500 transition ml-2"
@@ -63,9 +63,9 @@ function EditTodo({ todo, setShowModal }) {
                 name="title"
                 id="title"
                 value={data.title}
-                placeholder="Your To Do goes here.."
+                placeholder="Your daily task goes here.."
                 onChange={handleChange}
-                maxLength={30}
+                maxLength={60}
               />
             </div>
             {error && (
@@ -83,16 +83,6 @@ function EditTodo({ todo, setShowModal }) {
                 placeholder="Description"
                 onChange={handleChange}
               ></Textarea>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="dueDate">Due date</label>
-              <Input
-                type="date"
-                name="dueDate"
-                id="dueDate"
-                value={data.dueDate}
-                onChange={handleChange}
-              />
             </div>
 
             <div className="flex flex-col gap-1">
@@ -138,11 +128,13 @@ function EditTodo({ todo, setShowModal }) {
               Update
             </BtnPrimary>
           </form>
-          <BtnDanger onClick={() => deleteTodo(todo.id)}>Delete Todo</BtnDanger>
+          <BtnDanger onClick={() => deleteDaily(daily.id)}>
+            Delete Task
+          </BtnDanger>
         </div>
       </div>
     </div>
   );
 }
 
-export default EditTodo;
+export default EditDaily;

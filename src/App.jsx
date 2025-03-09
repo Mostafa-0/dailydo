@@ -7,7 +7,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -26,13 +25,12 @@ const Layout = () => {
 
   return (
     <>
-      <div>
-        {!noAuthPaths.includes(location.pathname) && <Navbar />}
+      {!noAuthPaths.includes(location.pathname) && <Navbar />}
+      <main>
         <Outlet />
-      </div>
-      <Footer />
+      </main>
       {noAuthPaths.includes(location.pathname) && (
-        <ThemeToggler style={"fixed bottom-4 right-4"} />
+        <ThemeToggler className="fixed bottom-4 right-4" />
       )}
     </>
   );

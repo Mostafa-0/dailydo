@@ -10,22 +10,24 @@ import {
   Bars3Icon,
 } from "@heroicons/react/24/solid";
 
-const CustomNavLink = ({ to, label, Icon }) => {
+const CustomNavLink = ({ to, label, Icon, children }) => {
   return (
-    <NavLink
-      to={to}
-      className={({ isActive }) =>
-        `sm:p-4 ${
-          isActive
-            ? "text-black dark:text-white"
-            : "text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
-        }`
-      }
-      aria-label={label}
-      title={label}
-    >
-      <Icon className="size-6" />
-    </NavLink>
+    <li>
+      <NavLink
+        to={to}
+        className={({ isActive }) =>
+          `sm:p-4 md:px-5 flex gap-2 items-center ${
+            isActive
+              ? "text-primary dark:text-white"
+              : "text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
+          }`
+        }
+        aria-label={label}
+        title={label}
+      >
+        <Icon className="size-5" /> {children}
+      </NavLink>
+    </li>
   );
 };
 
@@ -50,50 +52,45 @@ const Navbar = () => {
   if (loading || !currentUser) return null;
 
   return (
-    <nav className="backdrop-blur-sm border-b-[1px] border-black border-opacity-10 dark:border-white dark:border-opacity-5 sticky z-40 top-0 px-4 flex items-center justify-between">
+    <nav className="sticky top-0 bg-neutral-50 dark:bg-neutral-950 border-b dark:border-neutral-800 flex items-center justify-between z-40">
       <div className="text-xl md:text-2xl font-black py-4">
-        Dai<span className="text-emerald-700">ly</span>Do
+        Dai<span className="text-primary">ly</span>Do
       </div>
 
-      <div
-        className={`flex justify-between items-center p-2 sm:p-0 gap-6 rounded-full absolute right-3 
-        sm:static sm:bg-transparent sm:dark:bg-transparent ${
-          menuOpen
-            ? "bg-neutral-100 bg-opacity-40 dark:bg-neutral-900 dark:bg-opacity-80"
-            : ""
-        }`}
+      <button
+        className="text-neutral-800 hover:text-black dark:hover:text-white dark:text-neutral-400 sm:hidden z-40"
+        onClick={toggleMenu}
       >
-        <div
-          className={`flex sm:translate-x-0 sm:scale-100 items-center gap-4 sm:gap-0 text-md md:text-xl sm:divide-x divide-gray-300 dark:divide-neutral-800 transition ${
-            menuOpen ? "translate-x-0" : "translate-x-[80%] scale-0"
-          }`}
-        >
-          <div className="sm:p-4">
-            <ThemeToggler />
-          </div>
-          <CustomNavLink to="/" label="Home" Icon={HomeIcon} />
-          <CustomNavLink to="/profile" label="Profile" Icon={UserCircleIcon} />
-          <button
-            className="text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400 sm:p-4 sm:pr-0"
-            title="Sign Out"
-            onClick={handleLogout}
-          >
-            <ArrowRightStartOnRectangleIcon className="size-6" />
-            <span className="sr-only">Sign Out</span>
-          </button>
-        </div>
+        {menuOpen ? (
+          <XMarkIcon className="size-6" />
+        ) : (
+          <Bars3Icon className="size-7" />
+        )}
+      </button>
 
+      <ul
+        className={`absolute sm:static top-14 right-3 rounded-xl grid items-center sm:flex gap-5 p-7 border dark:border-neutral-900 
+          transition origin-top bg-white dark:bg-black sm:bg-transparent sm:dark:bg-transparent sm:border-none sm:p-0 sm:gap-0  ${
+            menuOpen ? "scale-100" : "scale-0 sm:scale-100"
+          }`}
+      >
+        <CustomNavLink to="/" label="Home" Icon={HomeIcon}>
+          Home
+        </CustomNavLink>
+        <CustomNavLink to="/profile" label="Profile" Icon={UserCircleIcon}>
+          Profile
+        </CustomNavLink>
         <button
-          className="text-neutral-800 hover:text-black dark:hover:text-white dark:text-neutral-400 sm:hidden"
-          onClick={toggleMenu}
+          className="flex gap-2 items-center text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400 sm:p-4 sm:pr-0"
+          onClick={handleLogout}
         >
-          {menuOpen ? (
-            <XMarkIcon className="size-6" />
-          ) : (
-            <Bars3Icon className="size-7" />
-          )}
+          <ArrowRightStartOnRectangleIcon className="size-5" />
+          Sign Out
         </button>
-      </div>
+        <li className="sm:px-4 md:px-5 mx-auto sm:-order-2 sm:border-r sm:dark:border-neutral-800">
+          <ThemeToggler />
+        </li>
+      </ul>
     </nav>
   );
 };

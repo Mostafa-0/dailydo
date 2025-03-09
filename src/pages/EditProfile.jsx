@@ -1,12 +1,12 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { BtnDanger, BtnPrimary } from "../components/Buttons";
+import { BtnDanger, BtnPrimary } from "../components/ui/Buttons";
+import { Input } from "../components/ui/Inputs";
 import {
   UserCircleIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
-import { Input } from "../components/Inputs";
 
 function EditProfile() {
   const { currentUser, editUsername, editEmail, setMessage } =

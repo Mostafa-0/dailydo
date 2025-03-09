@@ -4,35 +4,31 @@
 @tailwind utilities;
 
 * {
-  font-family: "Montserrat", sans-serif;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-family: "Montserrat", Helvetica, sans-serif;
 }
 
 body {
+  @apply text-sm lg:text-base;
+}
+
+/* body {
   background-image: url(./assets/circle-scatter-haikei.svg);
   background-size: cover;
   background-position: center;
-}
-
-body {
-  border-image: fill 1
-    linear-gradient(hsla(0, 0%, 83%, 0.4), hsla(0, 0%, 83%, 0.4));
-}
-
-.dark body {
-  border-image: fill 1
-    linear-gradient(hsla(0, 0%, 0%, 0.6), hsla(0, 0%, 0%, 0.6));
-}
+} */
 
 body:has(.auth-page) {
   background-image: url(./assets/blob.svg);
   background-size: cover;
   background-position: center;
   position: relative;
+  border-image: fill 1
+    linear-gradient(hsla(0, 0%, 83%, 0.4), hsla(0, 0%, 83%, 0.4));
+}
+
+.dark body:has(.auth-page) {
+  border-image: fill 1
+    linear-gradient(hsla(0, 0%, 0%, 0.6), hsla(0, 0%, 0%, 0.6));
 }
 
 body:has(.auth-page)::before {
@@ -49,6 +45,24 @@ body:has(.auth-page)::before {
     linear-gradient(hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.4));
 }
 
+.home,
+nav {
+  @apply px-4 md:px-8;
+}
+
+.home {
+  @apply py-4 md:py-8;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h2 {
+  @apply text-xl lg:text-2xl font-bold mb-4;
+}
+
 .dark input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
@@ -62,4 +76,8 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.list-wrapper {
+  @apply bg-neutral-50 dark:bg-neutral-950 border dark:border-neutral-800 p-4 md:p-6 rounded-lg min-h-96;
 }

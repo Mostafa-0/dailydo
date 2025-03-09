@@ -12,6 +12,7 @@ export const Input = React.forwardRef(
       onChange,
       maxLength,
       required = false,
+      autoFocus,
       className,
     },
     ref
@@ -19,7 +20,7 @@ export const Input = React.forwardRef(
     return (
       <input
         ref={ref}
-        className={`${className} p-3 font-medium bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition duration-300 ease-in-out`}
+        className={`${className} p-3 font-medium bg-white border dark:bg-neutral-900 dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-300 ease-in-out`}
         type={type}
         id={id}
         name={name}
@@ -29,6 +30,7 @@ export const Input = React.forwardRef(
         onChange={onChange}
         maxLength={maxLength}
         required={required}
+        autoFocus={autoFocus}
       />
     );
   }
@@ -53,7 +55,7 @@ export const Textarea = React.forwardRef(
     return (
       <textarea
         ref={ref}
-        className={`${className} max-h-60 p-3 font-medium bg-white dark:bg-neutral-800 text-gray-700 dark:text-gray-200 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent transition duration-300 ease-in-out`}
+        className={`${className} max-h-60 p-3 font-medium bg-white dark:bg-neutral-900 border dark:border-neutral-800 text-neutral-700 dark:text-neutral-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-300 ease-in-out`}
         id={id}
         name={name}
         defaultValue={defaultValue}

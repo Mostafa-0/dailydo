@@ -1,13 +1,13 @@
 import { AuthProvider } from "./AuthContext";
 import { TodosProvider } from "./TodosContext";
-import { HabitsProvider } from "./HabitsContext";
+import { DailiesProvider } from "./DailiesContext";
 
 function Providers({ children }) {
   return (
     <AuthProvider>
-      <TodosProvider>
-        <HabitsProvider>{children}</HabitsProvider>
-      </TodosProvider>
+      <DailiesProvider>
+        <TodosProvider>{children}</TodosProvider>
+      </DailiesProvider>
     </AuthProvider>
   );
 }

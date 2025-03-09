@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
-import { BtnDanger } from "./Buttons";
+import { BtnDanger } from "./ui/Buttons";
 import { XMarkIcon, ExclamationCircleIcon } from "@heroicons/react/24/outline";
 
 function Modal({ setShowModal }) {

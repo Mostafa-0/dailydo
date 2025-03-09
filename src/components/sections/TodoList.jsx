@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import ToDoItem from "./TodoItem";
 import { TodosContext } from "../../context/TodosContext";
-import TodoForm from "./TodoForm";
+import TodoForm from "../todos/TodoForm";
+import ToDoItem from "../todos/TodoItem";
 
 function TodoList() {
   const { todos, setTodos } = useContext(TodosContext);
@@ -49,21 +49,24 @@ function TodoList() {
   };
 
   return (
-    <div className="p-3 md:p-6 flex-1">
-      <h2 className="text-2xl md:text-3xl font-bold tracking-widest min-w-max my-4">
-        To Do&apos;s
-      </h2>
+    <section className="list-wrapper">
+      <h2>To Do&apos;s</h2>
 
-      <div className="flex flex-wrap gap-1">
+      <div className="flex flex-wrap gap-2">
         {/* Status filtering */}
-        <div className="grid w-full max-w-40">
-          <label htmlFor="select-status">Status: </label>
+        <div className="grow max-w-32">
+          <label htmlFor="todos-status" className="sr-only">
+            Status:{" "}
+          </label>
           <select
-            id="select-status"
+            id="todos-status"
             defaultValue={"all"}
             onChange={handleStatusChange}
-            className="dark:bg-neutral-800 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm"
+            className="dark:bg-neutral-900 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm w-full"
           >
+            <option value="all" className="font-medium" disabled>
+              Status:
+            </option>
             <option value="all" className="font-medium">
               All
             </option>
@@ -75,15 +78,21 @@ function TodoList() {
             </option>
           </select>
         </div>
+
         {/* Priority filtering */}
-        <div className="grid w-full max-w-40">
-          <label htmlFor="select-priority">Priority: </label>
+        <div className="grow max-w-32">
+          <label htmlFor="todos-priority" className="sr-only">
+            Priority:{" "}
+          </label>
           <select
-            id="select-priority"
+            id="todos-priority"
             defaultValue={"all"}
             onChange={handlePriorityChange}
-            className="dark:bg-neutral-800 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm"
+            className="dark:bg-neutral-900 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm w-full"
           >
+            <option value="all" className="font-medium" disabled>
+              Priority:
+            </option>
             <option value="all" className="font-medium">
               All
             </option>
@@ -98,15 +107,21 @@ function TodoList() {
             </option>
           </select>
         </div>
+
         {/* Due date sorting */}
-        <div className="grid w-full max-w-40">
-          <label htmlFor="select-sort">Due Date: </label>
+        <div className="grow max-w-32">
+          <label htmlFor="todos-sort" className="sr-only">
+            Due Date:{" "}
+          </label>
           <select
-            id="select-sort"
+            id="todos-sort"
             defaultValue={"none"}
             onChange={handleSortChange}
-            className="dark:bg-neutral-800 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm"
+            className="dark:bg-neutral-900 p-2 rounded-lg mr-2 focus:outline-none font-medium text-sm w-full"
           >
+            <option value="none" className="font-medium" disabled>
+              Due Date:
+            </option>
             <option value="none" className="font-medium">
               None
             </option>
@@ -123,12 +138,12 @@ function TodoList() {
       <div className="mt-4">
         <TodoForm />
         {todos.length === 0 && (
-          <p className="w-fit m-auto mt-12">
+          <p className="w-fit m-auto mt-12 text-sm text-neutral-600 dark:text-neutral-400">
             Looks like you have no todos, start adding one!
           </p>
         )}
         {todos.length !== 0 && filteredTodos.length === 0 && (
-          <p className="w-fit m-auto mt-12">No matching todos.</p>
+          <p className="w-fit m-auto mt-12 text-sm text-neutral-600 dark:text-neutral-400">No matching todos.</p>
         )}
         <ul className="grid gap-4">
           {filteredTodos.map((todo) => (
@@ -136,7 +151,7 @@ function TodoList() {
           ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 }
 

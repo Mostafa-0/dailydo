@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { TodosContext } from "../../context/TodosContext";
+import { DailiesContext } from "../../context/DailiesContext";
 import TaskForm from "../TaskForm";
 
-function TodoForm() {
-  const { addTodo } = useContext(TodosContext);
+function DailyForm() {
+  const { addDaily } = useContext(DailiesContext);
   const [title, setTitle] = useState("");
 
   const handleChange = (e) => {
@@ -15,7 +15,7 @@ function TodoForm() {
     if (title.trim().length < 1) {
       return;
     } else {
-      addTodo({
+      addDaily({
         id: crypto.randomUUID(),
         title: title,
         description: "",
@@ -29,9 +29,9 @@ function TodoForm() {
 
   return (
     <TaskForm
-      Label="Add To do"
-      placeholder="Add a To Do.."
-      name="todoTitle"
+      Label="Add Daily Task"
+      placeholder="Add a daily task.."
+      name="taskTitle"
       value={title}
       onChange={handleChange}
       onSubmit={handleSubmit}
@@ -39,4 +39,4 @@ function TodoForm() {
   );
 }
 
-export default TodoForm;
+export default DailyForm;

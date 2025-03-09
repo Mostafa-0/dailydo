@@ -2,9 +2,10 @@ import { useContext, useRef, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
-import { BtnPrimary } from "../components/Buttons";
-import Intro from "../components/Intro";
-import { Input } from "../components/Inputs";
+import { BtnPrimary } from "../components/ui/Buttons";
+import Intro from "../components/sections/Intro";
+import { Input } from "../components/ui/Inputs";
+import Loader from "../components/ui/loader";
 
 function Signup() {
   const { currentUser, signup } = useContext(AuthContext);
@@ -65,6 +66,7 @@ function Signup() {
             placeholder="Name"
             ref={nameRef}
             required
+            autoFocus
           />
           <label htmlFor="email" className="sr-only">
             Email
@@ -104,12 +106,12 @@ function Signup() {
           />
 
           <BtnPrimary type="submit" disabled={loading}>
-            {loading ? "Signing Up..." : "Sign Up"}
+            {loading ? <Loader size={16} /> : "Sign Up"}
           </BtnPrimary>
 
           {error && (
-            <div className="text-sm font-medium text-red-500 uppercase flex gap-1">
-              <ExclamationCircleIcon className="size-5 text-red-500" />
+            <div className="text-sm font-medium text-red-500 flex items-baseline gap-1">
+              <ExclamationCircleIcon className="size-3 text-red-500" />
               {error}
             </div>
           )}
