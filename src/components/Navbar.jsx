@@ -1,39 +1,38 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import ThemeToggler from "./ThemeToggler";
 import {
-  HomeIcon,
   UserCircleIcon,
+  CogIcon,
   ArrowRightStartOnRectangleIcon,
-  XMarkIcon,
-  Bars3Icon,
 } from "@heroicons/react/24/solid";
 
-const CustomNavLink = ({ to, label, Icon, children }) => {
+const CustomNavLink = ({ to, label, Icon, onClick, children }) => {
   return (
-    <li>
-      <NavLink
-        to={to}
-        className={({ isActive }) =>
-          `sm:p-4 md:px-5 flex gap-2 items-center ${
-            isActive
-              ? "text-primary dark:text-white"
-              : "text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
-          }`
-        }
-        aria-label={label}
-        title={label}
-      >
-        <Icon className="size-5" /> {children}
-      </NavLink>
-    </li>
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `flex gap-2 items-center ${
+          isActive
+            ? "text-primary dark:text-white"
+            : "text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
+        }`
+      }
+      aria-label={label}
+      title={label}
+      onClick={onClick}
+    >
+      <Icon className="size-5" /> {children}
+    </NavLink>
   );
 };
 
 const Navbar = () => {
   const { currentUser, loading, logout } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+  const menuBtnRef = useRef(null);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -49,48 +48,70 @@ const Navbar = () => {
     setMenuOpen(!menuOpen);
   };
 
-  if (loading || !currentUser) return null;
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target) &&
+        !menuBtnRef.current.contains(e.target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  // if (loading || !currentUser) return null;
 
   return (
-    <nav className="sticky top-0 bg-neutral-50 dark:bg-neutral-950 border-b dark:border-neutral-800 flex items-center justify-between z-40">
-      <div className="text-xl md:text-2xl font-black py-4">
+    <nav className="sticky top-0 py-4 bg-neutral-50 dark:bg-neutral-950 border-b dark:border-neutral-800 flex items-center justify-between z-40">
+      <NavLink to={"/"} className="text-xl md:text-2xl font-black">
         Dai<span className="text-primary">ly</span>Do
-      </div>
+      </NavLink>
 
       <button
-        className="text-neutral-800 hover:text-black dark:hover:text-white dark:text-neutral-400 sm:hidden z-40"
+        ref={menuBtnRef}
+        className="text-neutral-800 hover:text-black dark:text-neutral-300 dark:hover:text-white z-40"
         onClick={toggleMenu}
       >
-        {menuOpen ? (
-          <XMarkIcon className="size-6" />
-        ) : (
-          <Bars3Icon className="size-7" />
-        )}
+        <CogIcon
+          className={`size-8 transition ${menuOpen ? " rotate-180" : ""}`}
+        />
       </button>
 
-      <ul
-        className={`absolute sm:static top-14 right-3 rounded-xl grid items-center sm:flex gap-5 p-7 border dark:border-neutral-900 
-          transition origin-top bg-white dark:bg-black sm:bg-transparent sm:dark:bg-transparent sm:border-none sm:p-0 sm:gap-0  ${
-            menuOpen ? "scale-100" : "scale-0 sm:scale-100"
+      <div
+        ref={menuRef}
+        className={`absolute top-16 right-4 md:right-8 rounded-xl grid items-center gap-5 p-7 border dark:border-neutral-900 
+          transition origin-top bg-white dark:bg-black  ${
+            menuOpen ? "scale-100 visible" : "scale-0 invisible"
           }`}
       >
-        <CustomNavLink to="/" label="Home" Icon={HomeIcon}>
-          Home
-        </CustomNavLink>
-        <CustomNavLink to="/profile" label="Profile" Icon={UserCircleIcon}>
-          Profile
+        <CustomNavLink
+          to="/profile"
+          label="Account"
+          Icon={UserCircleIcon}
+          onClick={() => setMenuOpen(false)}
+        >
+          Account
         </CustomNavLink>
         <button
-          className="flex gap-2 items-center text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400 sm:p-4 sm:pr-0"
+          className="flex gap-2 items-center text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
           onClick={handleLogout}
         >
           <ArrowRightStartOnRectangleIcon className="size-5" />
           Sign Out
         </button>
-        <li className="sm:px-4 md:px-5 mx-auto sm:-order-2 sm:border-r sm:dark:border-neutral-800">
-          <ThemeToggler />
-        </li>
-      </ul>
+        <ThemeToggler />
+      </div>
     </nav>
   );
 };

@@ -21,6 +21,7 @@ function ToDoItem({ todo }) {
         description={todo.description}
         priority={todo.priority}
         status={todo.status}
+        dueDate={todo.dueDate}
         onCheck={handleCheck}
         setShowModal={() => {
           setShowModal(true);

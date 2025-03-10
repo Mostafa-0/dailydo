@@ -1,11 +1,12 @@
 import TickIcon from "./ui/TickIcon";
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
+import { CalendarDaysIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 
 function TaskItem({
   title,
   description,
   priority,
   status,
+  dueDate,
   onCheck,
   setShowModal,
 }) {
@@ -27,12 +28,12 @@ function TaskItem({
 
   return (
     <li
-      className={`relative flex justify-between gap-2 sm:gap-4 items-center px-3 py-4 min-h-16 h-max md:p-4 rounded-lg overflow-hidden ${priorityBg} bg-opacity-5`}
+      className={`${priorityBg} bg-opacity-5 relative flex justify-between gap-2 sm:gap-4 items-center min-h-[72px] h-max rounded-lg overflow-hidden`}
     >
-      <div className="flex gap-2 md:gap-4 items-center">
+      <div className="flex gap-2 md:gap-4 items-center overflow-hidden p-3 md:p-5">
         {/* Check Button */}
         <button onClick={onCheck}>
-          <TickIcon status={status} />
+          <TickIcon status={status} priority={priority} />
           <span className="sr-only">Mark Task as completed</span>
         </button>
 
@@ -40,24 +41,34 @@ function TaskItem({
         <div>
           <p
             title={title}
-            className={`md:text-lg break-all
-              ${status == "completed" ? "line-through text-neutral-500" : ""}`}
+            className={`text-sm md:text-base ${
+              status == "completed" ? "line-through text-neutral-500" : ""
+            }`}
           >
             {title}
           </p>
           {description && (
             <p
-              className={`text-sm opacity-90 break-all
+              className={`text-xs md:text-sm text-neutral-600 dark:text-neutral-300
               ${status == "completed" ? "line-through text-neutral-500" : ""}`}
             >
               {description}
+            </p>
+          )}
+          {dueDate && (
+            <p
+              className={`flex items-center gap-1 text-sm opacity-75 ${
+                status == "completed" ? "line-through text-neutral-500" : ""
+              }`}
+            >
+              <CalendarDaysIcon className="size-3" /> Due {dueDate}
             </p>
           )}
         </div>
       </div>
 
       <button
-        className="text-primary hover:brightness-125"
+        className="text-primary hover:brightness-125 p-3 md:p-5"
         title="Edit"
         onClick={setShowModal}
       >

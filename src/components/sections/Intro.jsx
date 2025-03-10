@@ -1,7 +1,7 @@
 function Intro() {
   return (
     <div className="flex flex-col justify-center gap-2 tracking-widest">
-      <h1 className="text-5xl md:text-7xl font-black">
+      <h1 className="text-5xl md:text-7xl font-black mb-2">
         Dai<span className="text-primary">ly</span>Do
       </h1>
       <p className="max-w-xl">

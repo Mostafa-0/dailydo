@@ -16,7 +16,6 @@ import EditProfile from "./pages/EditProfile";
 import PrivateRoute from "./pages/PrivateRoute";
 import Providers from "./context/Providers";
 import UpdatePassword from "./pages/UpdatePassword";
-import ThemeToggler from "./components/ThemeToggler";
 import NotFound from "./pages/NotFound";
 
 const Layout = () => {
@@ -29,9 +28,6 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
-      {noAuthPaths.includes(location.pathname) && (
-        <ThemeToggler className="fixed bottom-4 right-4" />
-      )}
     </>
   );
 };

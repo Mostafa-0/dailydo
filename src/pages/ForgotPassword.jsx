@@ -43,9 +43,7 @@ function ForgotPassword() {
     <div className="auth-page min-h-svh grid place-items-center p-4 relative">
       <div className="w-full max-w-lg">
         <form className="grid gap-4" onSubmit={handleSubmit}>
-          <h1 className="text-xl sm:text-2xl uppercase font-semibold">
-            Password Reset
-          </h1>
+          <h1 className="text-xl sm:text-2xl font-bold">Reset Password</h1>
           <label htmlFor="email" className="sr-only">
             Email
           </label>
@@ -69,20 +67,14 @@ function ForgotPassword() {
           )}
         </form>
 
-        <div className="flex gap-2 justify-between flex-col items-center sm:flex-row-reverse my-4 font-medium">
-          <Link
-            to={"/login"}
-            className="w-fit text-indigo-800 hover:border-indigo-800 dark:text-indigo-500 hover:dark:border-indigo-500 border-b border-transparent hover:border-b"
-          >
+        <div className="flex gap-2 justify-between items-center flex-wrap my-4 font-medium">
+          <Link to={"/login"} className="auth-link">
             Login
           </Link>
 
           <div className="flex gap-2">
             <p>Don&apos;t have an account ? </p>
-            <Link
-              to={"/signup"}
-              className="text-indigo-800 hover:border-indigo-800 dark:text-indigo-500 hover:dark:border-indigo-500 border-b border-transparent hover:border-b"
-            >
+            <Link to={"/signup"} className="auth-link">
               Sign Up
             </Link>
           </div>

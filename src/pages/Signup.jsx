@@ -56,7 +56,7 @@ function Signup() {
 
       <div className="flex flex-col justify-center">
         <form className="grid gap-4" onSubmit={handleSubmit}>
-          <h2 className="text-2xl uppercase font-bold">Sign Up</h2>
+          <h2 className="mb-0">Sign Up</h2>
           <label htmlFor="username" className="sr-only">
             Name
           </label>
@@ -93,7 +93,7 @@ function Signup() {
           />
 
           <label htmlFor="password-confirm" className="sr-only">
-            Password Confirmation
+            Confirm Password
           </label>
           <Input
             ref={passwordConfirmRef}
@@ -121,7 +121,7 @@ function Signup() {
           Already have an account?
           <Link
             to={"/login"}
-            className="text-indigo-800 hover:border-indigo-800 dark:text-indigo-500 hover:dark:border-indigo-500 border-b border-transparent hover:border-b"
+            className="auth-link"
           >
             Log in
           </Link>

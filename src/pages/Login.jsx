@@ -43,7 +43,7 @@ function Login() {
 
       <div className="flex flex-col justify-center">
         <form className="grid gap-4" onSubmit={handleSubmit}>
-          <h2 className="text-2xl uppercase font-bold">Log In</h2>
+          <h2 className="mb-0">Log In</h2>
           <label htmlFor="email" className="sr-only">
             Email
           </label>
@@ -82,20 +82,14 @@ function Login() {
           )}
         </form>
 
-        <div className="flex gap-2 justify-between items-center sm:flex-row-reverse flex-wrap my-4 font-medium">
-          <Link
-            to={"/forgot-password"}
-            className="w-fit text-indigo-800 hover:border-indigo-800 dark:text-indigo-500 hover:dark:border-indigo-500 border-b border-transparent hover:border-b"
-          >
+        <div className="flex gap-2 justify-between items-center flex-wrap my-4 font-medium">
+          <Link to={"/forgot-password"} className="auth-link">
             Forgot Password?
           </Link>
 
           <div className="flex gap-2">
             <p>Don&apos;t have an account?</p>
-            <Link
-              to={"/signup"}
-              className="text-indigo-800 hover:border-indigo-800 dark:text-indigo-500 hover:dark:border-indigo-500 border-b border-transparent hover:border-b"
-            >
+            <Link to={"/signup"} className="auth-link">
               Sign Up
             </Link>
           </div>

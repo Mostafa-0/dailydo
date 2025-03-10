@@ -71,69 +71,67 @@ function EditProfile() {
   }, [error]);
 
   return (
-    <div className="profile">
-      <form
-        className="p-4 md:p-8 mt-8 tracking-wide min-h-96 max-w-3xl"
-        onSubmit={handleSubmit}
-      >
-        <div className="flex justify-between items-center flex-wrap gap-4 mb-8">
-          <div className="flex gap-2 items-center">
-            <UserCircleIcon className="size-7 md:size-9" />
-            <h1 className="text-2xl md:text-3xl font-semibold">Profile</h1>
-          </div>
-          <div className="grid grid-flow-col grid-cols-2 gap-2">
-            <Link to={"/profile"}>
-              <BtnDanger type={"button"}>Cancel</BtnDanger>
-            </Link>
-            <BtnPrimary type={"submit"} disabled={loading}>
-              Save
-            </BtnPrimary>
-          </div>
+    <form
+      className="p-4 md:p-8 mt-8 tracking-wide min-h-96 max-w-3xl"
+      onSubmit={handleSubmit}
+    >
+      <div className="flex justify-between items-center flex-wrap gap-4 mb-8">
+        <div className="flex gap-2 items-center">
+          <UserCircleIcon className="size-7 md:size-9" />
+          <h1 className="text-2xl md:text-3xl font-semibold">Profile</h1>
         </div>
+        <div className="grid grid-flow-col grid-cols-2 gap-2">
+          <Link to={"/profile"}>
+            <BtnDanger type={"button"}>Cancel</BtnDanger>
+          </Link>
+          <BtnPrimary type={"submit"} disabled={loading}>
+            Save
+          </BtnPrimary>
+        </div>
+      </div>
 
-        <div className="font-medium grid gap-3">
-          <div className="grid gap-1">
-            <label htmlFor="username">Name</label>
-            <Input
-              id="username"
-              type="text"
-              defaultValue={currentUser.displayName}
-              ref={usernameRef}
-            />
-          </div>
-          <div className="grid gap-1">
-            <label htmlFor="email">Email</label>
-            <Input
-              id="email"
-              type="email"
-              defaultValue={currentUser.email}
-              ref={emailRef}
-            />
-          </div>
-          <div className="grid gap-1">
-            <label htmlFor="password">Password</label>
-            <Input
-              id="password"
-              type="password"
-              ref={passwordRef}
-              onChange={handleChange}
-            />
-          </div>
-          {error && (
-            <div className="text-sm font-medium text-red-500 uppercase flex gap-1">
-              <ExclamationCircleIcon className="size-5 text-red-500" />
-              {error}
-            </div>
-          )}
+      <div className="font-medium grid gap-3">
+        <div className="grid gap-1">
+          <label htmlFor="username">Name</label>
+          <Input
+            id="username"
+            type="text"
+            defaultValue={currentUser.displayName}
+            ref={usernameRef}
+          />
         </div>
-        {!currentUser.emailVerified && (
-          <p className="text-sm mt-4 font-medium flex gap-1 text-gray-600 dark:text-gray-300">
-            <ExclamationCircleIcon className="size-4 mt-[2px]" />
-            Note: Current account is unverified.
-          </p>
+        <div className="grid gap-1">
+          <label htmlFor="email">Email</label>
+          <Input
+            id="email"
+            type="email"
+            defaultValue={currentUser.email}
+            ref={emailRef}
+          />
+        </div>
+        <div className="grid gap-1">
+          <label htmlFor="password">Password</label>
+          <Input
+            id="password"
+            type="password"
+            ref={passwordRef}
+            onChange={handleChange}
+          />
+        </div>
+        {error && (
+          <div className="text-sm font-medium text-red-500 uppercase flex gap-1">
+            <ExclamationCircleIcon className="size-5 text-red-500" />
+            {error}
+          </div>
         )}
-      </form>
-    </div>
+      </div>
+      {!currentUser.emailVerified && (
+        <p className="text-sm mt-4 font-medium flex gap-1 text-gray-600 dark:text-gray-300">
+          <ExclamationCircleIcon className="size-4 mt-[2px]" />
+          Note: Current account is unverified.
+        </p>
+      )}
+    </form>
   );
 }
 

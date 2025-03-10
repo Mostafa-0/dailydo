@@ -11,11 +11,12 @@ body {
   @apply text-sm lg:text-base;
 }
 
-/* body {
+body {
   background-image: url(./assets/circle-scatter-haikei.svg);
   background-size: cover;
   background-position: center;
-} */
+  backdrop-filter: blur(16px);
+}
 
 body:has(.auth-page) {
   background-image: url(./assets/blob.svg);
@@ -40,23 +41,21 @@ body:has(.auth-page)::before {
   z-index: -5;
 }
 
-.dark body:has(.auth-page) {
-  border-image: fill 1
-    linear-gradient(hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.4));
-}
-
-.home,
+main,
 nav {
   @apply px-4 md:px-8;
 }
 
-.home {
+main {
   @apply py-4 md:py-8;
 }
 
+main:has(.auth-page) {
+  @apply p-0;
+}
+
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.4rem);
 }
 
 h2 {
@@ -78,6 +77,10 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.list-wrapper {
-  @apply bg-neutral-50 dark:bg-neutral-950 border dark:border-neutral-800 p-4 md:p-6 rounded-lg min-h-96;
+.list-section {
+  @apply bg-neutral-50 dark:bg-neutral-950 border dark:border-neutral-800 shadow-sm p-4 md:p-6 rounded-lg min-h-96;
+}
+
+.auth-link {
+  @apply w-fit text-indigo-800 hover:border-indigo-800 dark:text-indigo-500 hover:dark:border-indigo-500 border-b border-transparent hover:border-b;
 }
