@@ -4,7 +4,7 @@ import DailyForm from "../dailies/DailiesForm";
 import DailyItem from "../dailies/DailyItem";
 import Select from "../ui/Select";
 
-function DailiesList() {
+function DailiesList({ className }) {
   const { dailies, setDailies } = useContext(DailiesContext);
   const [filteredDailies, setFilteredDailies] = useState(dailies);
   const [statusFilter, setStatusFilter] = useState("all");
@@ -25,7 +25,7 @@ function DailiesList() {
   }, [dailies, statusFilter, priorityFilter]);
 
   return (
-    <section className="list-section">
+    <section className={`${className} list-section`}>
       <h2>Dailies</h2>
       <div className="flex flex-wrap gap-4">
         <Select

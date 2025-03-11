@@ -4,7 +4,7 @@ import TodoForm from "../todos/TodoForm";
 import ToDoItem from "../todos/TodoItem";
 import Select from "../ui/Select";
 
-function TodoList() {
+function TodoList({ className }) {
   const { todos, setTodos } = useContext(TodosContext);
   const [filteredTodos, setFilteredTodos] = useState(todos);
   const [statusFilter, setStatusFilter] = useState("all");
@@ -38,8 +38,8 @@ function TodoList() {
   }, [todos, statusFilter, priorityFilter, dueDateFilter]);
 
   return (
-    <section className="list-section">
-      <h2>To Do&apos;s</h2>
+    <section className={`${className} list-section`}>
+      <h2>To-dos</h2>
 
       <div className="flex flex-wrap gap-4">
         <Select
@@ -79,12 +79,12 @@ function TodoList() {
         <TodoForm />
         {todos.length === 0 && (
           <p className="w-fit m-auto mt-12 text-sm text-neutral-600 dark:text-neutral-400">
-            Looks like you have no To Do&apos;s, start adding one!
+            Looks like you have no To-dos, start adding one!
           </p>
         )}
         {todos.length !== 0 && filteredTodos.length === 0 && (
           <p className="w-fit m-auto mt-12 text-sm text-neutral-600 dark:text-neutral-400">
-            No matching todos.
+            No matching To-dos.
           </p>
         )}
         <ul className="grid gap-4">

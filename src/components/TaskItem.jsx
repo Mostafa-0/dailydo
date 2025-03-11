@@ -42,7 +42,9 @@ function TaskItem({
           <p
             title={title}
             className={`text-sm md:text-base ${
-              status == "completed" ? "line-through text-neutral-500" : ""
+              status == "completed"
+                ? "line-through text-neutral-500 dark:text-neutral-500"
+                : ""
             }`}
           >
             {title}
@@ -50,15 +52,21 @@ function TaskItem({
           {description && (
             <p
               className={`text-xs md:text-sm text-neutral-600 dark:text-neutral-300
-              ${status == "completed" ? "line-through text-neutral-500" : ""}`}
+              ${
+                status == "completed"
+                  ? "line-through text-neutral-500 dark:text-neutral-500"
+                  : ""
+              }`}
             >
               {description}
             </p>
           )}
           {dueDate && (
             <p
-              className={`flex items-center gap-1 text-sm opacity-75 ${
-                status == "completed" ? "line-through text-neutral-500" : ""
+              className={`flex items-center gap-1 text-xs md:text-sm text-neutral-600 ${
+                status == "completed"
+                  ? "line-through text-neutral-500 dark:text-neutral-500"
+                  : ""
               }`}
             >
               <CalendarDaysIcon className="size-3" /> Due {dueDate}

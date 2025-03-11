@@ -70,7 +70,7 @@ const Navbar = () => {
     };
   }, [menuOpen]);
 
-  // if (loading || !currentUser) return null;
+  if (loading || !currentUser) return null;
 
   return (
     <nav className="sticky top-0 py-4 bg-neutral-50 dark:bg-neutral-950 border-b dark:border-neutral-800 flex items-center justify-between z-40">
@@ -84,7 +84,7 @@ const Navbar = () => {
         onClick={toggleMenu}
       >
         <CogIcon
-          className={`size-8 transition ${menuOpen ? " rotate-180" : ""}`}
+          className={`size-8 transition ${menuOpen ? " rotate-90" : ""}`}
         />
       </button>
 

@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { BtnSecondary } from "../components/ui/Buttons";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 import Popup from "../components/ui/Popup";
 import {
@@ -130,7 +129,7 @@ function Profile() {
           {currentUser && !currentUser.emailVerified && (
             <button
               onClick={handleVerifyEmail}
-              className="mt-4 ml-2 text-sm font-semibold border-b rounded-sm text-emerald-500 border-emerald-500"
+              className="mt-4 ml-2 w-fit text-sm font-semibold border-b rounded-sm text-emerald-500 border-emerald-500"
             >
               Verify Email
             </button>

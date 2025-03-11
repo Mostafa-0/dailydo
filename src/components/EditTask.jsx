@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BtnCustom, BtnDanger, BtnPrimary } from "./ui/Buttons";
 import { Input, Textarea } from "./ui/Inputs";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -13,9 +14,20 @@ function EditTask({
   handleDelete,
   dueDate = false,
 }) {
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setShowModal(null);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [setShowModal, onSubmit]);
+
   return (
     // Overlay
-    <div className="overlay fixed inset-0 bg-black bg-opacity-50 grid place-items-center z-50 p-2 md:p-4">
+    <div className="overlay fixed inset-0 h-svh bg-black bg-opacity-50 grid place-items-center z-50 p-2 md:p-4">
       {/* Modal */}
       <div className="bg-neutral-100 dark:bg-neutral-950 border dark:border-neutral-800 p-6 rounded-lg shadow-lg w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
