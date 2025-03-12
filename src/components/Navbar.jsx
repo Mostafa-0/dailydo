@@ -7,6 +7,7 @@ import {
   CogIcon,
   ArrowRightStartOnRectangleIcon,
 } from "@heroicons/react/24/solid";
+import Clock from "./Clock";
 
 const CustomNavLink = ({ to, label, Icon, onClick, children }) => {
   return (
@@ -74,10 +75,10 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 py-4 bg-neutral-50 dark:bg-neutral-950 border-b dark:border-neutral-800 flex items-center justify-between z-40">
-      <NavLink to={"/"} className="text-xl md:text-2xl font-black">
-        Dai<span className="text-primary">ly</span>Do
-      </NavLink>
+      {/* Date and Time */}
+      <Clock />
 
+      {/* Settings button */}
       <button
         ref={menuBtnRef}
         className="text-neutral-800 hover:text-black dark:text-neutral-300 dark:hover:text-white z-40"
@@ -88,6 +89,7 @@ const Navbar = () => {
         />
       </button>
 
+      {/* Settings Menu */}
       <div
         ref={menuRef}
         className={`absolute top-16 right-4 md:right-8 rounded-xl grid items-center gap-5 p-7 border dark:border-neutral-900 

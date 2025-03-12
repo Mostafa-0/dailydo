@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Clock() {
+function Clock({ className }) {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -20,12 +20,12 @@ function Clock() {
   const date = time.getDate();
 
   return (
-    <div className="grid place-items-center text-2xl sm:text-3xl md:text-4xl">
-      <div className="font-black font-sans mb-1">
+    <div className={`${className} text-xl sm:text-2xl md:text-3xl`}>
+      <div className="font-black font-sans">
         {hours} <span className="animate-pulse font-sans">:</span> {minutes}{" "}
         <span className="text-[0.5em]">{ampm}</span>
       </div>
-      <div className="text-[0.45em] font-sans leading-none">
+      <div className="text-[0.45em] font-sans leading-none font-medium">
         {day}, {month} {date}
       </div>
     </div>
