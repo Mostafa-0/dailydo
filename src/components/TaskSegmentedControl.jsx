@@ -14,7 +14,7 @@ function TaskSegmentedControl({ handleSelection }) {
         onClick={() => handleClick("dailies")}
         className={`relative z-10 px-6 py-2 text-sm font-medium rounded-full transition-all ${
           selection === "dailies"
-            ? "bg-primary text-white shadow"
+            ? "bg-emerald-700 text-white shadow"
             : "text-neutral-600 dark:text-neutral-400"
         }`}
       >
@@ -24,7 +24,7 @@ function TaskSegmentedControl({ handleSelection }) {
         onClick={() => handleClick("todos")}
         className={`relative z-10 px-6 py-2 text-sm font-medium rounded-full transition-all ${
           selection === "todos"
-            ? "bg-primary text-white shadow"
+            ? "bg-emerald-700 text-white shadow"
             : "text-neutral-600 dark:text-neutral-400"
         }`}
       >
@@ -32,7 +32,7 @@ function TaskSegmentedControl({ handleSelection }) {
       </button>
       {/* Sliding Background */}
       <div
-        className={`absolute top-0 bottom-0 w-1/2 bg-primary rounded-full transition-all duration-300 ${
+        className={`absolute top-0 bottom-0 w-1/2 bg-emerald-700/75 rounded-full transition-all duration-300 ${
           selection === "todos" ? "translate-x-full" : "translate-x-0"
         }`}
       ></div>

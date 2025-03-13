@@ -39,16 +39,16 @@ function TaskItem({
 
         {/* Title and Description */}
         <div>
-          <p
+          <h3
             title={title}
-            className={`text-sm md:text-base ${
+            className={`text-sm md:text-base font-medium ${
               status == "completed"
                 ? "line-through text-neutral-500 dark:text-neutral-500"
                 : ""
             }`}
           >
             {title}
-          </p>
+          </h3>
           {description && (
             <p
               className={`text-xs md:text-sm text-neutral-600 dark:text-neutral-300

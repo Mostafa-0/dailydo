@@ -83,9 +83,10 @@ const Navbar = () => {
         ref={menuBtnRef}
         className="text-neutral-800 hover:text-black dark:text-neutral-300 dark:hover:text-white z-40"
         onClick={toggleMenu}
+        aria-label="Settings"
       >
         <CogIcon
-          className={`size-8 transition ${menuOpen ? " rotate-90" : ""}`}
+          className={`size-9 transition ${menuOpen ? " rotate-90" : ""}`}
         />
       </button>
 

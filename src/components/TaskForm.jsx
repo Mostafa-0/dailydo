@@ -12,7 +12,7 @@ function TaskForm({ label, placeholder, name, value, onChange, onSubmit }) {
         <Input
           type="text"
           id={id}
-          maxLength={60}
+          maxLength={80}
           placeholder={placeholder}
           name={name}
           value={value}
