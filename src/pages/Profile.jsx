@@ -41,13 +41,13 @@ function Profile() {
     }
   }, [message, setMessage]);
 
-  // if (!currentUser) {
-  //   return (
-  //     <div className="min-h-[80svh] grid place-items-center text-neutral-600 dark:text-neutral-400">
-  //       Please log in to view this page.
-  //     </div>
-  //   );
-  // }
+  if (!currentUser) {
+    return (
+      <div className="min-h-[80svh] grid place-items-center text-neutral-600 dark:text-neutral-400">
+        Please log in to view this page.
+      </div>
+    );
+  }
 
   return (
     <>
