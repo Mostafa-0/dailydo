@@ -29,8 +29,8 @@ function TodoForm() {
 
   return (
     <TaskForm
-      Label="Add To do"
-      placeholder="Add a To Do.."
+      Label="Add To-do"
+      placeholder="Add a To-do.."
       name="todoTitle"
       value={title}
       onChange={handleChange}
