@@ -2,7 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import AuthContext from "../context/AuthContext";
-import { BtnPrimary } from "../components/ui/Buttons";
+import Button from "../components/ui/Button";
 import Intro from "../components/sections/Intro";
 import { Input } from "../components/ui/Inputs";
 import Loader from "../components/ui/loader";
@@ -105,9 +105,9 @@ function Signup() {
             onChange={handleChange}
           />
 
-          <BtnPrimary type="submit" disabled={loading}>
+          <Button variant="primary" type="submit" disabled={loading}>
             {loading ? <Loader size={16} /> : "Sign Up"}
-          </BtnPrimary>
+          </Button>
 
           {error && (
             <div className="text-sm font-medium text-red-500 flex items-baseline gap-1">
@@ -119,10 +119,7 @@ function Signup() {
 
         <div className="flex gap-2 font-medium my-4">
           Already have an account?
-          <Link
-            to={"/login"}
-            className="auth-link"
-          >
+          <Link to={"/login"} className="auth-link">
             Log in
           </Link>
         </div>

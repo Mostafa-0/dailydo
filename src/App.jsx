@@ -15,7 +15,6 @@ import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import PrivateRoute from "./pages/PrivateRoute";
 import Providers from "./context/Providers";
-import UpdatePassword from "./pages/UpdatePassword";
 import NotFound from "./pages/NotFound";
 
 const Layout = () => {
@@ -60,14 +59,6 @@ const App = () => {
           element={
             <PrivateRoute>
               <EditProfile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="update-password"
-          element={
-            <PrivateRoute>
-              <UpdatePassword />
             </PrivateRoute>
           }
         />

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { TodosContext } from "../../context/TodosContext";
-import EditTask from "../EditTask";
+import EditTask from "../modals/EditTask";
 
 function EditTodo({ todo, setShowModal }) {
   const { editTodo, deleteTodo } = useContext(TodosContext);

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { DailiesContext } from "../../context/DailiesContext";
-import EditTask from "../EditTask";
+import EditTask from "../modals/EditTask";
 
 function EditDaily({ daily, setShowModal }) {
   const { editDaily, deleteDaily } = useContext(DailiesContext);

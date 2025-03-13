@@ -21,11 +21,11 @@ function Clock({ className }) {
 
   return (
     <div className={`${className} text-xl sm:text-2xl md:text-3xl`}>
-      <div className="font-black font-sans">
+      <div>
         {hours} <span className="animate-pulse font-sans">:</span> {minutes}{" "}
         <span className="text-[0.5em]">{ampm}</span>
       </div>
-      <div className="text-[0.45em] font-sans leading-none font-medium">
+      <div className="text-[0.45em] font-sans leading-none">
         {day}, {month} {date}
       </div>
     </div>

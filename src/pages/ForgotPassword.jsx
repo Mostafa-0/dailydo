@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import { BtnPrimary } from "../components/ui/Buttons";
+import Button from "../components/ui/Button";
 import { Input } from "../components/ui/Inputs";
 import Popup from "../components/ui/Popup";
 import Loader from "../components/ui/loader";
@@ -55,9 +55,9 @@ function ForgotPassword() {
             name="email"
             required
           />
-          <BtnPrimary type="submit" disabled={loading}>
+          <Button variant="primary" type="submit" disabled={loading}>
             {loading ? <Loader size={16} /> : "Reset"}
-          </BtnPrimary>
+          </Button>
 
           {error && (
             <div className="text-sm font-medium text-red-500 flex items-baseline gap-1">

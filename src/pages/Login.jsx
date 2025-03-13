@@ -2,7 +2,7 @@ import { useContext, useRef, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { BtnPrimary } from "../components/ui/Buttons";
+import Button from "../components/ui/Button";
 import Intro from "../components/sections/Intro";
 import { Input } from "../components/ui/Inputs";
 import Loader from "../components/ui/loader";
@@ -70,9 +70,9 @@ function Login() {
             required
           />
 
-          <BtnPrimary type="submit" disabled={loading}>
+          <Button variant="primary" type="submit" disabled={loading}>
             {loading ? <Loader size={16} /> : "Log In"}
-          </BtnPrimary>
+          </Button>
 
           {error && (
             <div className="text-sm font-medium text-red-500 flex items-baseline gap-1">

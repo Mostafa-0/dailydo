@@ -14,7 +14,7 @@ const CustomNavLink = ({ to, label, Icon, onClick, children }) => {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `flex gap-2 items-center ${
+        `flex gap-2 items-center font-medium ${
           isActive
             ? "text-primary dark:text-white"
             : "text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
@@ -100,14 +100,14 @@ const Navbar = () => {
       >
         <CustomNavLink
           to="/profile"
-          label="Account"
+          label="Profile"
           Icon={UserCircleIcon}
           onClick={() => setMenuOpen(false)}
         >
-          Account
+          Profile
         </CustomNavLink>
         <button
-          className="flex gap-2 items-center text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
+          className="flex gap-2 items-center font-medium text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
           onClick={handleLogout}
         >
           <ArrowRightStartOnRectangleIcon className="size-5" />

@@ -1,5 +1,11 @@
-import TickIcon from "./ui/TickIcon";
+import TickButton from "./ui/TickButton";
 import { CalendarDaysIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+
+const priorityColors = {
+  low: "bg-green-600",
+  medium: "bg-yellow-500",
+  high: "bg-red-600",
+};
 
 function TaskItem({
   title,
@@ -10,64 +16,38 @@ function TaskItem({
   onCheck,
   setShowModal,
 }) {
-  let priorityBg = "";
-  switch (priority) {
-    case "low":
-      priorityBg = "bg-green-600";
-      break;
-    case "medium":
-      priorityBg = "bg-yellow-500";
-      break;
-    case "high":
-      priorityBg = "bg-red-600";
-      break;
-    default:
-      priorityBg = "";
-      break;
-  }
+  const priorityBg = priorityColors[priority] || "";
+  const isCompleted = status === "completed";
+  const textStyle = isCompleted
+    ? "line-through text-neutral-500 dark:text-neutral-500"
+    : "";
 
   return (
     <li
-      className={`${priorityBg} bg-opacity-5 relative flex justify-between gap-2 sm:gap-4 items-center min-h-[72px] h-max rounded-lg overflow-hidden`}
+      className={`${priorityBg} bg-opacity-5 relative flex justify-between items-center min-h-[72px] h-max rounded-lg overflow-hidden`}
     >
-      <div className="flex gap-2 md:gap-4 items-center overflow-hidden p-3 md:p-5">
-        {/* Check Button */}
-        <button onClick={onCheck}>
-          <TickIcon status={status} priority={priority} />
-          <span className="sr-only">Mark Task as completed</span>
-        </button>
+      <div className="flex items-center overflow-hidden">
+        <TickButton status={status} priority={priority} onClick={onCheck} />
 
-        {/* Title and Description */}
-        <div>
+        <div className="py-3 md:py-5">
           <h3
             title={title}
-            className={`text-sm md:text-base font-medium ${
-              status == "completed"
-                ? "line-through text-neutral-500 dark:text-neutral-500"
-                : ""
-            }`}
+            className={`text-sm md:text-base font-medium ${textStyle}`}
           >
             {title}
           </h3>
+
           {description && (
             <p
-              className={`text-xs md:text-sm text-neutral-600 dark:text-neutral-300
-              ${
-                status == "completed"
-                  ? "line-through text-neutral-500 dark:text-neutral-500"
-                  : ""
-              }`}
+              className={`text-xs md:text-sm text-neutral-600 dark:text-neutral-300 ${textStyle}`}
             >
               {description}
             </p>
           )}
+
           {dueDate && (
             <p
-              className={`flex items-center gap-1 text-xs md:text-sm text-neutral-600 ${
-                status == "completed"
-                  ? "line-through text-neutral-500 dark:text-neutral-500"
-                  : ""
-              }`}
+              className={`flex items-center gap-1 text-xs md:text-sm text-neutral-600 dark:text-neutral-300 ${textStyle}`}
             >
               <CalendarDaysIcon className="size-3" /> Due {dueDate}
             </p>

@@ -22,7 +22,7 @@ body {
 }
 .dark body {
   border-image: fill 1
-    linear-gradient(hsla(0, 0%, 0%, 0.8), hsla(0, 0%, 0%, 0.8));
+    linear-gradient(hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.4));
 }
 
 body:has(.auth-page) {
