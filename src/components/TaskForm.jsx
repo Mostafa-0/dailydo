@@ -22,7 +22,7 @@ function TaskForm({ label, placeholder, name, value, onChange, onSubmit }) {
         <button
           type="submit"
           className="absolute inset-y-0 right-3 hover:brightness-110 active:scale-110"
-          aria-label={label}
+          aria-label="Add task"
         >
           <PlusCircleIcon className="size-8 text-primary" />
         </button>
