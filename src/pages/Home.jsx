@@ -8,7 +8,7 @@ function Home() {
 
   return (
     <>
-      <div className="grid items-start lg:grid-cols-2 gap-8 mt-4 md:mt-8">
+      <div className="grid items-start lg:grid-cols-2 gap-8">
         <DailiesList
           className={displayedList == "dailies" ? "" : "hidden lg:block"}
         />
