@@ -43,8 +43,13 @@ body:has(.auth-page)::before {
   z-index: -5;
 }
 
+main,
+nav {
+  @apply px-4 sm:px-6 md:px-8;
+}
+
 main {
-  @apply px-4 sm:px-6 md:px-8 py-4 md:py-8;
+  @apply py-4 md:py-8;
 }
 
 main:has(.auth-page) {

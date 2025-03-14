@@ -12,7 +12,7 @@ import {
 
 const ProfileDetail = ({ label, value }) => (
   <div className="py-3 px-1 sm:px-3 border-b border-neutral-300 dark:border-neutral-700">
-    <h3 className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
+    <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-300">
       {label}
     </h3>
     <p className="text-sm font-medium text-neutral-800 dark:text-neutral-200 break-all">

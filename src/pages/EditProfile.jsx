@@ -70,7 +70,7 @@ function EditProfile() {
         <div className="grid gap-2 max-w-96">
           <label
             htmlFor="username"
-            className="text-sm font-medium text-neutral-500 dark:text-neutral-400"
+            className="text-sm font-medium text-neutral-600 dark:text-neutral-300"
           >
             Name
           </label>
@@ -85,7 +85,7 @@ function EditProfile() {
         <div className="grid gap-2 max-w-96">
           <label
             htmlFor="email"
-            className="text-sm font-medium text-neutral-500 dark:text-neutral-400"
+            className="text-sm font-medium text-neutral-600 dark:text-neutral-300"
           >
             Email
           </label>
@@ -100,7 +100,7 @@ function EditProfile() {
         <div className="grid gap-2 max-w-96">
           <label
             htmlFor="password"
-            className="text-sm font-medium text-neutral-500 dark:text-neutral-400"
+            className="text-sm font-medium text-neutral-600 dark:text-neutral-300"
           >
             Verify Password
           </label>

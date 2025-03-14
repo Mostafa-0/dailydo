@@ -3,6 +3,8 @@ import { TodosContext } from "../../context/TodosContext";
 import TodoForm from "../todos/TodoForm";
 import ToDoItem from "../todos/TodoItem";
 import Select from "../ui/Select";
+import Tooltip from "../ui/Tooltip";
+import { InformationCircleIcon } from "@heroicons/react/24/solid";
 
 function TodoList({ className }) {
   const { todos, setTodos } = useContext(TodosContext);
@@ -39,7 +41,12 @@ function TodoList({ className }) {
 
   return (
     <section className={`${className} list-section`}>
-      <h2>To-dos</h2>
+      <div className="flex gap-4 items-center">
+        <h2>To-dos</h2>
+        <Tooltip text="Todos are one-time tasks you can complete anytime.">
+          <InformationCircleIcon className="size-5 mb-4" />
+        </Tooltip>
+      </div>
 
       <div className="flex flex-wrap gap-4">
         <Select

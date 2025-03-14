@@ -1,8 +1,9 @@
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { Input } from "./ui/Inputs";
+import { useId } from "react";
 
 function TaskForm({ label, placeholder, name, value, onChange, onSubmit }) {
-  let id = crypto.randomUUID();
+  let id = useId();
   return (
     <form onSubmit={onSubmit} className="mb-6">
       <div className="relative">

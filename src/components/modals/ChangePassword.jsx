@@ -84,7 +84,7 @@ function ChangePassword({ setShowModal }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">
           Password must be at least 6 characters long.
         </p>
         <div className="grid gap-2">

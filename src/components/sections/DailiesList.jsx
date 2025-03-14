@@ -3,6 +3,8 @@ import { DailiesContext } from "../../context/DailiesContext";
 import DailyForm from "../dailies/DailiesForm";
 import DailyItem from "../dailies/DailyItem";
 import Select from "../ui/Select";
+import Tooltip from "../ui/Tooltip";
+import { InformationCircleIcon } from "@heroicons/react/24/solid";
 
 function DailiesList({ className }) {
   const { dailies, setDailies } = useContext(DailiesContext);
@@ -26,7 +28,12 @@ function DailiesList({ className }) {
 
   return (
     <section className={`${className} list-section`}>
-      <h2>Dailies</h2>
+      <div className="flex gap-4 items-center">
+        <h2>Dailies</h2>
+        <Tooltip text="Dailies are tasks you complete every day.">
+          <InformationCircleIcon className="size-5 mb-4" />
+        </Tooltip>
+      </div>
       <div className="flex flex-wrap gap-4">
         <Select
           label="Status"

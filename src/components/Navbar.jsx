@@ -17,14 +17,14 @@ const CustomNavLink = ({ to, label, Icon, onClick, children }) => {
         `flex gap-2 items-center font-medium ${
           isActive
             ? "text-primary dark:text-white"
-            : "text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
+            : "text-neutral-900 hover:text-primary dark:text-neutral-300 dark:hover:text-white"
         }`
       }
       aria-label={label}
       title={label}
       onClick={onClick}
     >
-      <Icon className="size-5" /> {children}
+      <Icon className="size-4" /> {children}
     </NavLink>
   );
 };
@@ -74,7 +74,7 @@ const Navbar = () => {
   if (loading || !currentUser) return null;
 
   return (
-    <nav className="sticky top-5 py-4 px-6 w-[90%] max-w-xs mx-auto rounded-xl bg-neutral-50 dark:bg-neutral-950 bg-opacity-60 dark:bg-opacity-60 backdrop-blur-md border dark:border-neutral-800 flex items-center justify-between z-40">
+    <nav className="sticky top-0 py-4 w-full lg:max-w-sm mx-auto rounded-bl-xl rounded-br-xl bg-neutral-50 dark:bg-neutral-950 bg-opacity-70 dark:bg-opacity-70 backdrop-blur-sm dark:shadow-neutral-800 lg:border lg:border-t-0 lg:dark:border-neutral-800 flex items-center justify-between z-40">
       {/* Date and Time */}
       <Clock />
 
@@ -107,10 +107,10 @@ const Navbar = () => {
           Profile
         </CustomNavLink>
         <button
-          className="flex gap-2 items-center font-medium text-neutral-600 hover:text-black dark:hover:text-white dark:text-neutral-400"
+          className="flex gap-2 items-center font-medium text-neutral-900 hover:text-primary dark:text-neutral-300 dark:hover:text-white"
           onClick={handleLogout}
         >
-          <ArrowRightStartOnRectangleIcon className="size-5" />
+          <ArrowRightStartOnRectangleIcon className="size-4" />
           Sign Out
         </button>
         <ThemeToggler />
