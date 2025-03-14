@@ -74,11 +74,11 @@ const Navbar = () => {
   if (loading || !currentUser) return null;
 
   return (
-    <nav className="sticky top-0 py-4 bg-neutral-50 dark:bg-neutral-950 border-b dark:border-neutral-800 flex items-center justify-between z-40">
+    <nav className="sticky top-5 py-4 px-6 md:px-8 w-[90%] max-w-xs mx-auto rounded-full bg-neutral-50 dark:bg-neutral-950 bg-opacity-80 dark:bg-opacity-80 backdrop-blur-sm border dark:border-neutral-800 flex items-center justify-between z-40">
       {/* Date and Time */}
       <Clock />
 
-      {/* Settings button */}
+      {/* Menu button */}
       <button
         ref={menuBtnRef}
         className="text-neutral-800 hover:text-black dark:text-neutral-300 dark:hover:text-white z-40"
@@ -90,11 +90,11 @@ const Navbar = () => {
         />
       </button>
 
-      {/* Settings Menu */}
+      {/* Menu */}
       <div
         ref={menuRef}
-        className={`absolute top-16 right-4 md:right-8 rounded-xl grid items-center gap-5 p-7 border dark:border-neutral-900 
-          transition origin-top bg-white dark:bg-black  ${
+        className={`absolute top-[72px] right-4 md:right-8 rounded-xl grid items-center gap-5 p-7 border dark:border-neutral-900 
+          transition origin-top bg-white dark:bg-neutral-950 ${
             menuOpen ? "scale-100 visible" : "scale-0 invisible"
           }`}
       >

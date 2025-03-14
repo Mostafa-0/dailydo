@@ -24,12 +24,13 @@ function TaskItem({
 
   return (
     <li
-      className={`${priorityBg} bg-opacity-5 relative flex justify-between items-center min-h-[72px] h-max rounded-lg overflow-hidden`}
+      className={`relative bg-neutral-50 dark:bg-neutral-950 flex justify-between items-center min-h-[72px] h-max rounded-lg overflow-hidden`}
     >
+      <div className={`absolute inset-0 ${priorityBg} bg-opacity-5`}></div>
       <div className="flex items-center overflow-hidden">
         <TickButton status={status} priority={priority} onClick={onCheck} />
 
-        <div className="py-3 md:py-5">
+        <div className="py-3 md:py-5 z-10">
           <h3
             title={title}
             className={`text-sm md:text-base font-medium ${textStyle}`}
@@ -56,7 +57,7 @@ function TaskItem({
       </div>
 
       <button
-        className="text-primary hover:brightness-125 p-3 md:p-5"
+        className="text-primary hover:brightness-125 p-3 md:p-5 z-10"
         title="Edit"
         onClick={setShowModal}
       >

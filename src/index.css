@@ -14,15 +14,10 @@ body {
 }
 
 body {
-  background-image: url(./assets/circle-scatter-haikei.svg);
+  background-image: url('data:image/svg+xml,<svg id="visual" viewBox="0 0 900 600" width="900" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="none" stroke="%23009473" stroke-width="2" stroke-opacity="0.2"><circle r="145" cx="600" cy="455"></circle><circle r="63" cx="534" cy="127"></circle><circle r="64" cx="859" cy="302"></circle><circle r="100" cx="248" cy="406"></circle><circle r="78" cx="97" cy="39"></circle><circle r="118" cx="845" cy="8"></circle><circle r="121" cx="6" cy="589"></circle></g></svg>');
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
-  border-image: fill 1
-    linear-gradient(hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0.8));
-}
-.dark body {
-  border-image: fill 1
-    linear-gradient(hsla(0, 0%, 0%, 0.4), hsla(0, 0%, 0%, 0.4));
 }
 
 body:has(.auth-page) {
@@ -48,13 +43,8 @@ body:has(.auth-page)::before {
   z-index: -5;
 }
 
-main,
-nav {
-  @apply px-4 sm:px-6 md:px-8;
-}
-
 main {
-  @apply py-4 md:py-8;
+  @apply px-4 sm:px-6 md:px-8 py-4 md:py-8;
 }
 
 main:has(.auth-page) {
