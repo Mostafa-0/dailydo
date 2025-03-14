@@ -1,6 +1,7 @@
 import ModalWrapper from "./ModalWrapper";
 import { Input, Textarea } from "../ui/Inputs";
 import Button from "../ui/Button";
+import { useEffect } from "react";
 
 function EditTask({
   data,
@@ -13,6 +14,14 @@ function EditTask({
   handleDelete,
   dueDate = false,
 }) {
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Delete") handleDelete();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleDelete]);
+
   return (
     <ModalWrapper title="Edit Task" setShowModal={setShowModal}>
       <form className="flex flex-col gap-5" onSubmit={onSubmit}>

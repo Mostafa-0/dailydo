@@ -25,7 +25,7 @@ const TickButton = ({ status, priority, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="group size-14 md:size-16 p-4 md:p-5"
+      className="group size-14 md:size-16 p-4 md:p-5 z-10"
       aria-label="Mark task as completed"
     >
       <svg

@@ -74,7 +74,7 @@ const Navbar = () => {
   if (loading || !currentUser) return null;
 
   return (
-    <nav className="sticky top-5 py-4 px-6 md:px-8 w-[90%] max-w-xs mx-auto rounded-full bg-neutral-50 dark:bg-neutral-950 bg-opacity-80 dark:bg-opacity-80 backdrop-blur-sm border dark:border-neutral-800 flex items-center justify-between z-40">
+    <nav className="sticky top-5 py-4 px-6 w-[90%] max-w-xs mx-auto rounded-xl bg-neutral-50 dark:bg-neutral-950 bg-opacity-60 dark:bg-opacity-60 backdrop-blur-md border dark:border-neutral-800 flex items-center justify-between z-40">
       {/* Date and Time */}
       <Clock />
 
