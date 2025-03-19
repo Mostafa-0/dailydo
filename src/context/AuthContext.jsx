@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/auth";
+import { db } from "../firebase/firestore";
 import {
   EmailAuthProvider,
   createUserWithEmailAndPassword,
@@ -14,6 +15,7 @@ import {
   deleteUser,
   verifyBeforeUpdateEmail,
 } from "firebase/auth";
+import { doc, collection, getDocs, writeBatch } from "firebase/firestore";
 
 const AuthContext = createContext();
 
@@ -32,8 +34,6 @@ export function AuthProvider({ children }) {
 
     await updateProfile(user, { displayName });
     await sendEmailVerification(user);
-
-    setCurrentUser(user);
   }
 
   function login(email, password) {
@@ -70,8 +70,32 @@ export function AuthProvider({ children }) {
     return updatePassword(currentUser, newPassword);
   }
 
-  function deleteAccount() {
-    deleteUser(currentUser);
+  async function deleteAccount(password) {
+    if (!auth.currentUser) return;
+
+    // Re-authenticate user before deletion
+    await reauthenticate(password);
+
+    const userId = auth.currentUser.uid;
+    const userRef = doc(db, "users", userId);
+    const collections = ["todos", "dailies"];
+
+    const batch = writeBatch(db);
+
+    for (const collectionName of collections) {
+      const subCollectionRef = collection(
+        db,
+        `users/${userId}/${collectionName}`
+      );
+      const snapshot = await getDocs(subCollectionRef);
+
+      snapshot.forEach((doc) => batch.delete(doc.ref));
+    }
+
+    batch.delete(userRef);
+    await batch.commit();
+
+    await deleteUser(auth.currentUser);
   }
 
   useEffect(() => {

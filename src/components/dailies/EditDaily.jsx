@@ -7,7 +7,7 @@ function EditDaily({ daily, setShowModal }) {
   const [data, setData] = useState({
     ...daily,
   });
-  const [priority, setPriority] = useState(daily.priority || "medium");
+  const [priority, setPriority] = useState(daily.priority || "low");
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -22,7 +22,7 @@ function EditDaily({ daily, setShowModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (data.title.trim().length < 1) {
-      setError("You can't leave this empty!");
+      setError("You can't leave the title empty!");
       setTimeout(() => {
         setError("");
       }, 4000);
@@ -32,7 +32,6 @@ function EditDaily({ daily, setShowModal }) {
       await editDaily(daily.id, {
         ...data,
         priority,
-        dueDate: data.dueDate ? data.dueDate : "",
       });
       setShowModal(false);
     } catch (error) {

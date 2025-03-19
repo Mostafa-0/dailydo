@@ -38,9 +38,6 @@ function EditTask({
             onChange={onChange}
             maxLength={80}
           />
-          {error && (
-            <div className="text-sm font-medium text-orange-500">{error}</div>
-          )}
         </div>
 
         <div className="grid gap-2">
@@ -100,6 +97,9 @@ function EditTask({
         </div>
 
         <div className="grid gap-2">
+          {error && (
+            <div className="text-sm font-medium text-orange-500">{error}</div>
+          )}
           <Button variant="primary" type="submit">
             Update
           </Button>

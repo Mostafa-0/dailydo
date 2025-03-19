@@ -16,11 +16,9 @@ function DailyForm() {
       return;
     } else {
       addDaily({
-        id: crypto.randomUUID(),
         title: title,
         description: "",
         priority: "low",
-        dueDate: "",
         status: "pending",
       });
       setTitle("");

@@ -15,9 +15,9 @@ const ProfileDetail = ({ label, value }) => (
     <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-300">
       {label}
     </h3>
-    <p className="text-sm font-medium text-neutral-800 dark:text-neutral-200 break-all">
+    <div className="text-sm font-medium text-neutral-800 dark:text-neutral-200 break-all">
       {value}
-    </p>
+    </div>
   </div>
 );
 

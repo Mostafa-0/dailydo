@@ -1,40 +1,54 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { db } from "../firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
+import AuthContext from "./AuthContext";
 
 export const DailiesContext = createContext();
 
 export const DailiesProvider = ({ children }) => {
-  const [dailies, setDailies] = useState(() => {
-    const localValue = localStorage.getItem("DAILIES");
-    if (localValue == null) return [];
-    return JSON.parse(localValue);
-  });
+  const [dailies, setDailies] = useState([]);
+  const { currentUser, loading } = useContext(AuthContext);
+  const userId = currentUser?.uid;
 
   useEffect(() => {
-    localStorage.setItem("DAILIES", JSON.stringify(dailies));
-  }, [dailies]);
+    if (loading || !userId) {
+      setDailies([]);
+      return;
+    }
 
-  const addDaily = (daily) => {
-    setDailies((prevDailies) => [daily, ...prevDailies]);
+    const dailiesRef = collection(db, `users/${userId}/dailies`);
+
+    const unsubscribeDailies = onSnapshot(dailiesRef, (snapshot) => {
+      const fetchedDailies = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setDailies(fetchedDailies);
+    });
+
+    return () => unsubscribeDailies();
+  }, [loading, userId]);
+
+  const addDaily = async (daily) => {
+    if (!userId) return;
+    await addDoc(collection(db, `users/${userId}/dailies`), daily);
   };
 
-  const editDaily = (id, data) => {
-    setDailies((prevDailies) =>
-      prevDailies.map((t) =>
-        t.id === id
-          ? {
-              ...t,
-              title: data.title,
-              description: data.description,
-              priority: data.priority,
-              status: data.status,
-            }
-          : t
-      )
-    );
+  const editDaily = async (id, updatedData) => {
+    if (!userId) return;
+    await updateDoc(doc(db, `users/${userId}/dailies`, id), updatedData);
   };
 
-  const deleteDaily = (id) => {
-    setDailies((prevDailies) => prevDailies.filter((daily) => daily.id !== id));
+  const deleteDaily = async (id) => {
+    if (!userId) return;
+    await deleteDoc(doc(db, `users/${userId}/dailies`, id));
   };
 
   return (

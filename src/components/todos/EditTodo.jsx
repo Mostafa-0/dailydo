@@ -22,7 +22,7 @@ function EditTodo({ todo, setShowModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (data.title.trim().length < 1) {
-      setError("You can't leave this empty!");
+      setError("You can't leave the title empty!");
       setTimeout(() => {
         setError("");
       }, 4000);

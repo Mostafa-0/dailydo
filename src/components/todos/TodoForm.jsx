@@ -16,7 +16,6 @@ function TodoForm() {
       return;
     } else {
       addTodo({
-        id: crypto.randomUUID(),
         title: title,
         description: "",
         priority: "low",

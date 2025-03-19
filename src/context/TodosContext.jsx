@@ -1,41 +1,54 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { db } from "../firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  deleteDoc,
+  updateDoc,
+  onSnapshot,
+} from "firebase/firestore";
+import AuthContext from "./AuthContext";
 
 export const TodosContext = createContext();
 
 export const TodosProvider = ({ children }) => {
-  const [todos, setTodos] = useState(() => {
-    const localValue = localStorage.getItem("TODOS");
-    if (localValue == null) return [];
-    return JSON.parse(localValue);
-  });
+  const [todos, setTodos] = useState([]);
+  const { currentUser, loading } = useContext(AuthContext);
+  const userId = currentUser?.uid;
 
   useEffect(() => {
-    localStorage.setItem("TODOS", JSON.stringify(todos));
-  }, [todos]);
+    if (loading || !userId) {
+      setTodos([]);
+      return;
+    }
 
-  const addTodo = (todo) => {
-    setTodos((prevTodos) => [todo, ...prevTodos]);
+    const todosRef = collection(db, `users/${userId}/todos`);
+
+    const unsubscribeTodos = onSnapshot(todosRef, (snapshot) => {
+      const fetchedTodos = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setTodos(fetchedTodos);
+    });
+
+    return () => unsubscribeTodos();
+  }, [loading, userId]);
+
+  const addTodo = async (todo) => {
+    if (!userId) return;
+    await addDoc(collection(db, `users/${userId}/todos`), todo);
   };
 
-  const editTodo = (id, data) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((t) =>
-        t.id === id
-          ? {
-              ...t,
-              title: data.title,
-              description: data.description,
-              dueDate: data.dueDate,
-              priority: data.priority,
-              status: data.status,
-            }
-          : t
-      )
-    );
+  const editTodo = async (id, updatedData) => {
+    if (!userId) return;
+    await updateDoc(doc(db, `users/${userId}/todos`, id), updatedData);
   };
 
-  const deleteTodo = (id) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  const deleteTodo = async (id) => {
+    if (!userId) return;
+    await deleteDoc(doc(db, `users/${userId}/todos`, id));
   };
 
   return (
