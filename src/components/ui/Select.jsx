@@ -72,7 +72,7 @@ function Select({ label, options, setValue, className }) {
       {showOptions && (
         <ul
           className="absolute top-12 min-w-max w-full text-sm font-medium rounded-md bg-neutral-50 border border-neutral-300 
-          dark:bg-neutral-950 dark:border-neutral-800 dark:text-white min-h-12 z-10"
+          dark:bg-neutral-950 dark:border-neutral-800 dark:text-white min-h-12 z-20"
         >
           {options.map((option, index) => (
             <li

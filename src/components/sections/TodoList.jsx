@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { TodosContext } from "../../context/TodosContext";
 import TodoForm from "../todos/TodoForm";
 import ToDoItem from "../todos/TodoItem";
@@ -7,13 +7,12 @@ import Tooltip from "../ui/Tooltip";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 
 function TodoList({ className }) {
-  const { todos, setTodos } = useContext(TodosContext);
-  const [filteredTodos, setFilteredTodos] = useState(todos);
-  const [statusFilter, setStatusFilter] = useState("all");
+  const { todos } = useContext(TodosContext);
+  const [statusFilter, setStatusFilter] = useState("pending");
   const [priorityFilter, setPriorityFilter] = useState("all");
   const [dueDateFilter, setDueDateFilter] = useState("none");
 
-  useEffect(() => {
+  const filteredTodos = useMemo(() => {
     let filtered = [...todos];
 
     if (statusFilter !== "all") {
@@ -36,7 +35,7 @@ function TodoList({ className }) {
       });
     }
 
-    setFilteredTodos(filtered);
+    return filtered;
   }, [todos, statusFilter, priorityFilter, dueDateFilter]);
 
   return (
@@ -96,7 +95,7 @@ function TodoList({ className }) {
         )}
         <ul className="grid gap-4">
           {filteredTodos.map((todo) => (
-            <ToDoItem key={todo.id} todo={todo} setTodos={setTodos} />
+            <ToDoItem key={todo.id} todo={todo} />
           ))}
         </ul>
       </div>

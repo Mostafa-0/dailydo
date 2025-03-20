@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { DailiesContext } from "../../context/DailiesContext";
 import DailyForm from "../dailies/DailiesForm";
 import DailyItem from "../dailies/DailyItem";
@@ -7,12 +7,11 @@ import Tooltip from "../ui/Tooltip";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 
 function DailiesList({ className }) {
-  const { dailies, setDailies } = useContext(DailiesContext);
-  const [filteredDailies, setFilteredDailies] = useState(dailies);
+  const { dailies } = useContext(DailiesContext);
   const [statusFilter, setStatusFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
 
-  useEffect(() => {
+  const filteredDailies = useMemo(() => {
     let filtered = [...dailies];
 
     if (statusFilter !== "all") {
@@ -23,7 +22,7 @@ function DailiesList({ className }) {
       filtered = filtered.filter((daily) => daily.priority === priorityFilter);
     }
 
-    setFilteredDailies(filtered);
+    return filtered
   }, [dailies, statusFilter, priorityFilter]);
 
   return (
@@ -72,7 +71,7 @@ function DailiesList({ className }) {
         )}
         <ul className="grid gap-4">
           {filteredDailies.map((daily) => (
-            <DailyItem key={daily.id} daily={daily} setDailies={setDailies} />
+            <DailyItem key={daily.id} daily={daily} />
           ))}
         </ul>
       </div>

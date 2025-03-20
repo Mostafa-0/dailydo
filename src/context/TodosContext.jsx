@@ -7,6 +7,9 @@ import {
   deleteDoc,
   updateDoc,
   onSnapshot,
+  serverTimestamp,
+  query,
+  orderBy,
 } from "firebase/firestore";
 import AuthContext from "./AuthContext";
 
@@ -23,7 +26,10 @@ export const TodosProvider = ({ children }) => {
       return;
     }
 
-    const todosRef = collection(db, `users/${userId}/todos`);
+    const todosRef = query(
+      collection(db, `users/${userId}/todos`),
+      orderBy("createdAt", "desc")
+    );
 
     const unsubscribeTodos = onSnapshot(todosRef, (snapshot) => {
       const fetchedTodos = snapshot.docs.map((doc) => ({
@@ -38,7 +44,10 @@ export const TodosProvider = ({ children }) => {
 
   const addTodo = async (todo) => {
     if (!userId) return;
-    await addDoc(collection(db, `users/${userId}/todos`), todo);
+    await addDoc(collection(db, `users/${userId}/todos`), {
+      ...todo,
+      createdAt: serverTimestamp(),
+    });
   };
 
   const editTodo = async (id, updatedData) => {

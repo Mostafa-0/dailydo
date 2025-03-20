@@ -9,7 +9,7 @@ function TaskSegmentedControl({ handleSelection }) {
   };
 
   return (
-    <div className="fixed bottom-4 inset-x-0 mx-auto w-fit flex bg-white dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-full shadow-md lg:hidden">
+    <div className="fixed bottom-4 inset-x-0 mx-auto w-fit flex bg-white dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 rounded-full shadow-md lg:hidden z-40">
       <button
         onClick={() => handleClick("dailies")}
         className={`relative z-10 px-6 py-2 text-sm font-medium rounded-full transition-all ${

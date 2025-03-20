@@ -25,11 +25,11 @@ const TickButton = ({ status, priority, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="group size-14 md:size-16 p-4 md:p-5 z-10"
+      className="group p-4 md:p-5 z-10"
       aria-label="Mark task as completed"
     >
       <svg
-        className={`size-full border-2 ${borderColor} rounded-full cursor-pointer transition-all duration-300 ease-in-out hover:scale-110 ${
+        className={`size-6 border-2 ${borderColor} rounded-full cursor-pointer transition-all duration-300 ease-in-out hover:scale-110 ${
           isCompleted ? "scale-110" : ""
         }`}
         viewBox="0 0 100 100"

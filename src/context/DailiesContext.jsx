@@ -5,7 +5,12 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import AuthContext from "./AuthContext";
@@ -26,7 +31,11 @@ export const DailiesProvider = ({ children }) => {
 
     resetDailiesIfNeeded(userId);
 
-    const dailiesRef = collection(db, `users/${userId}/dailies`);
+    const dailiesRef = query(
+      collection(db, `users/${userId}/dailies`),
+      orderBy("createdAt", "desc")
+    );
+
     const unsubscribeDailies = onSnapshot(dailiesRef, (snapshot) => {
       const fetchedDailies = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -40,7 +49,18 @@ export const DailiesProvider = ({ children }) => {
 
   const addDaily = async (daily) => {
     if (!userId) return;
-    await addDoc(collection(db, `users/${userId}/dailies`), daily);
+
+    await addDoc(collection(db, `users/${userId}/dailies`), {
+      ...daily,
+      createdAt: serverTimestamp(),
+    });
+
+    const userRef = doc(db, "users", userId);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      await setDoc(userRef, { lastReset: new Date().toISOString() });
+    }
   };
 
   const editDaily = async (id, updatedData) => {
