@@ -15,7 +15,13 @@ import {
   deleteUser,
   verifyBeforeUpdateEmail,
 } from "firebase/auth";
-import { doc, collection, getDocs, writeBatch } from "firebase/firestore";
+import {
+  doc,
+  collection,
+  getDocs,
+  writeBatch,
+  setDoc,
+} from "firebase/firestore";
 
 const AuthContext = createContext();
 
@@ -34,6 +40,7 @@ export function AuthProvider({ children }) {
 
     await updateProfile(user, { displayName });
     await sendEmailVerification(user);
+    await setDoc(doc(db, "users", user.uid), {});
   }
 
   function login(email, password) {

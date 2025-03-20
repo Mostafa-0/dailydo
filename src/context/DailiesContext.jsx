@@ -9,6 +9,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import AuthContext from "./AuthContext";
+import { resetDailiesIfNeeded } from "../helpers/resetDailies";
 
 export const DailiesContext = createContext();
 
@@ -23,8 +24,9 @@ export const DailiesProvider = ({ children }) => {
       return;
     }
 
-    const dailiesRef = collection(db, `users/${userId}/dailies`);
+    resetDailiesIfNeeded(userId);
 
+    const dailiesRef = collection(db, `users/${userId}/dailies`);
     const unsubscribeDailies = onSnapshot(dailiesRef, (snapshot) => {
       const fetchedDailies = snapshot.docs.map((doc) => ({
         id: doc.id,
