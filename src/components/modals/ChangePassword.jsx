@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../context/AuthContext";
 import ModalWrapper from "./ModalWrapper";
 import Button from "../ui/Button";
 import { Input } from "../ui/Inputs";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import ProfileContext from "../../context/ProfileContext";
 
 function ChangePassword({ setShowModal }) {
-  const { editPassword, setMessage } = useContext(AuthContext);
+  const { editPassword, setMessage } = useContext(ProfileContext);
   const [currentPassword, setCurrentPassword] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");

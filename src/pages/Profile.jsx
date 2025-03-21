@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState, useMemo } from "react";
-import AuthContext from "../context/AuthContext";
 import DeleteAccount from "../components/modals/DeleteAccount";
 import Button from "../components/ui/Button";
 import Popup from "../components/ui/Popup";
@@ -9,6 +8,8 @@ import {
   CheckBadgeIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline";
+import { UserIcon } from "@heroicons/react/24/solid";
+import ProfileContext from "../context/ProfileContext";
 
 const ProfileDetail = ({ label, value }) => (
   <div className="py-3 px-1 sm:px-3 border-b border-neutral-300 dark:border-neutral-700">
@@ -22,8 +23,13 @@ const ProfileDetail = ({ label, value }) => (
 );
 
 function Profile() {
-  const { currentUser, sendEmailVerification, message, setMessage } =
-    useContext(AuthContext);
+  const {
+    currentUser,
+    profilePicture,
+    sendEmailVerification,
+    message,
+    setMessage,
+  } = useContext(ProfileContext);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -62,7 +68,17 @@ function Profile() {
 
       <div className="flex items-center justify-between flex-wrap gap-5 mt-6">
         <div className="flex items-center gap-4">
-          <div className="size-24 bg-neutral-300 dark:bg-neutral-800 rounded-full" />
+          {profilePicture ? (
+            <img
+              src={profilePicture}
+              alt="Profile Picture"
+              className="size-24 object-center object-cover bg-gradient-to-bl from-primary via-primary/60 to-primary/30 border-2 border-primary rounded-full"
+            />
+          ) : (
+            <div className="size-24 p-4 object-center bg-gradient-to-bl from-primary via-primary/60 to-primary/30 border-2 border-primary rounded-full">
+              <UserIcon className="text-white" />
+            </div>
+          )}
           <h2 className="text-lg font-semibold">{displayName || "[Name]"}</h2>
         </div>
         <Button to="/edit-profile">Edit Profile</Button>
