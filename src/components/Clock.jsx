@@ -20,7 +20,7 @@ function Clock({ className }) {
   const date = time.getDate();
 
   return (
-    <div className={`${className} text-xl sm:text-2xl md:text-3xl`}>
+    <div className={`${className} text-2xl md:text-3xl`}>
       <div>
         {hours} <span className="animate-pulse font-sans">:</span> {minutes}{" "}
         <span className="text-[0.5em]">{ampm}</span>

@@ -5,9 +5,10 @@ import DailyItem from "../dailies/DailyItem";
 import Select from "../ui/Select";
 import Tooltip from "../ui/Tooltip";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import Loader from "../ui/loader";
 
 function DailiesList({ className }) {
-  const { dailies } = useContext(DailiesContext);
+  const { dailies, loadingDailies } = useContext(DailiesContext);
   const [statusFilter, setStatusFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
 
@@ -22,7 +23,7 @@ function DailiesList({ className }) {
       filtered = filtered.filter((daily) => daily.priority === priorityFilter);
     }
 
-    return filtered
+    return filtered;
   }, [dailies, statusFilter, priorityFilter]);
 
   return (
@@ -59,21 +60,23 @@ function DailiesList({ className }) {
 
       <div className="mt-4">
         <DailyForm />
-        {dailies.length === 0 && (
+        {loadingDailies ? (
+          <Loader size={24} className="mt-12" />
+        ) : dailies.length === 0 ? (
           <p className="w-fit m-auto mt-12 text-sm text-neutral-600 dark:text-neutral-400">
             Looks like you have no dailies, start adding one!
           </p>
-        )}
-        {dailies.length !== 0 && filteredDailies.length === 0 && (
+        ) : filteredDailies.length === 0 ? (
           <p className="w-fit m-auto mt-12 text-sm text-neutral-600 dark:text-neutral-400">
             No matching dailies.
           </p>
+        ) : (
+          <ul className="grid gap-4">
+            {filteredDailies.map((daily) => (
+              <DailyItem key={daily.id} daily={daily} />
+            ))}
+          </ul>
         )}
-        <ul className="grid gap-4">
-          {filteredDailies.map((daily) => (
-            <DailyItem key={daily.id} daily={daily} />
-          ))}
-        </ul>
       </div>
     </section>
   );

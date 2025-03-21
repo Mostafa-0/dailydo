@@ -5,9 +5,10 @@ import ToDoItem from "../todos/TodoItem";
 import Select from "../ui/Select";
 import Tooltip from "../ui/Tooltip";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import Loader from "../ui/loader";
 
 function TodoList({ className }) {
-  const { todos } = useContext(TodosContext);
+  const { todos, loadingTodos } = useContext(TodosContext);
   const [statusFilter, setStatusFilter] = useState("pending");
   const [priorityFilter, setPriorityFilter] = useState("all");
   const [dueDateFilter, setDueDateFilter] = useState("none");
@@ -83,21 +84,23 @@ function TodoList({ className }) {
 
       <div className="mt-4">
         <TodoForm />
-        {todos.length === 0 && (
+        {loadingTodos ? (
+          <Loader size={24} className="mt-12" />
+        ) : todos.length === 0 ? (
           <p className="w-fit m-auto mt-12 text-sm text-neutral-600 dark:text-neutral-400">
             Looks like you have no To-dos, start adding one!
           </p>
-        )}
-        {todos.length !== 0 && filteredTodos.length === 0 && (
+        ) : filteredTodos.length === 0 ? (
           <p className="w-fit m-auto mt-12 text-sm text-neutral-600 dark:text-neutral-400">
             No matching To-dos.
           </p>
+        ) : (
+          <ul className="grid gap-4">
+            {filteredTodos.map((todo) => (
+              <ToDoItem key={todo.id} todo={todo} />
+            ))}
+          </ul>
         )}
-        <ul className="grid gap-4">
-          {filteredTodos.map((todo) => (
-            <ToDoItem key={todo.id} todo={todo} />
-          ))}
-        </ul>
       </div>
     </section>
   );

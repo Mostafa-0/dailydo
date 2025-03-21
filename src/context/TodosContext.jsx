@@ -17,6 +17,7 @@ export const TodosContext = createContext();
 
 export const TodosProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
+  const [loadingTodos, setLoadingTodos] = useState(true);
   const { currentUser, loading } = useContext(AuthContext);
   const userId = currentUser?.uid;
 
@@ -31,12 +32,15 @@ export const TodosProvider = ({ children }) => {
       orderBy("createdAt", "desc")
     );
 
+    setLoadingTodos(true);
+
     const unsubscribeTodos = onSnapshot(todosRef, (snapshot) => {
       const fetchedTodos = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setTodos(fetchedTodos);
+      setLoadingTodos(false);
     });
 
     return () => unsubscribeTodos();
@@ -65,6 +69,7 @@ export const TodosProvider = ({ children }) => {
       value={{
         todos,
         setTodos,
+        loadingTodos,
         addTodo,
         editTodo,
         deleteTodo,
