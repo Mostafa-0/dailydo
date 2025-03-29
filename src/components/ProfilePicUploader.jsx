@@ -1,6 +1,6 @@
 import { UserIcon } from "@heroicons/react/24/solid";
 import { ArrowUpOnSquareIcon } from "@heroicons/react/24/outline";
-import Loader from "./ui/loader";
+import Loader from "./ui/Loader";
 
 function ProfilePicUploader({ imageUrl, onFileSelect, uploading }) {
   return (

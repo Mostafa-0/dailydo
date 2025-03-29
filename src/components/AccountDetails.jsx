@@ -1,15 +1,15 @@
 import { useContext, useState, useMemo, useEffect } from "react";
+import { Link } from "react-router-dom";
 import ProfileContext from "../context/ProfileContext";
+import { useUploadImage } from "../hooks/useUploadImage";
+import ProfilePicUploader from "./ProfilePicUploader";
 import Button from "./ui/Button";
 import Popup from "./ui/Popup";
+import { Input } from "./ui/Inputs";
 import {
   CheckBadgeIcon,
   ExclamationCircleIcon,
 } from "@heroicons/react/24/solid";
-import { Input } from "./ui/Inputs";
-import ProfilePicUploader from "./ProfilePicUploader";
-import { useUploadImage } from "../hooks/useUploadImage";
-import { Link } from "react-router-dom";
 
 function ProfileSection({ title, description, children, className = "" }) {
   return (
