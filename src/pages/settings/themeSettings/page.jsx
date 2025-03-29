@@ -45,7 +45,7 @@ function ThemeSettings() {
           <button
             key={value}
             onClick={() => setTheme(value)}
-            className={`relative grow w-40 px-3 py-2 border-2 rounded-full shadow-md flex items-center gap-2 transition-all hover:shadow-lg 
+            className={`relative w-full max-w-40 px-3 py-2 border-2 rounded-full shadow-md flex items-center gap-2 transition-all hover:shadow-lg 
             ${bgColor} ${
               theme === value
                 ? "border-2 border-primary"

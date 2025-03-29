@@ -21,7 +21,7 @@ function TaskItem({
   const textStyle = isCompleted ? "line-through text-muted-foreground" : "";
 
   return (
-    <li className="group relative bg-card dark:bg-card flex justify-between items-center min-h-[72px] h-max rounded-lg shadow-sm shadow-secondary hover:shadow-secondary hover:shadow-lg transition duration-300 overflow-hidden">
+    <div className="group relative bg-card dark:bg-card flex justify-between items-center min-h-[72px] h-max rounded-lg shadow-sm shadow-secondary hover:shadow-secondary hover:shadow-lg transition duration-300 overflow-hidden">
       <div
         className={`absolute inset-0 ${priorityBg} bg-opacity-10 dark:bg-opacity-10`}
       ></div>
@@ -61,7 +61,7 @@ function TaskItem({
       <div
         className={`absolute w-full h-1 bottom-0 inset-x-0 ${priorityBg} opacity-60 dark:opacity-80`}
       ></div>
-    </li>
+    </div>
   );
 }
 

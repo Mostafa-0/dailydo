@@ -1,7 +1,7 @@
 import React from "react";
 
 const baseClass =
-  "px-3 py-2 font-medium bg-input text-foreground border border-border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition duration-300 ease-in-out";
+  "px-3 py-[10px] font-medium bg-input text-foreground border border-border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition duration-300 ease-in-out";
 
 export const Input = React.forwardRef(({ className, ...props }, ref) => {
   return (

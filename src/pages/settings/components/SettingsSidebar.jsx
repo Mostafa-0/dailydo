@@ -20,10 +20,7 @@ function SettingsSidebar({ isOpen, onClose }) {
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside
-        role="navigation"
-        className="hidden md:block w-1/4 min-w-[180px] pr-6 border-r border-border"
-      >
+      <aside className="hidden md:block w-1/4 min-w-[180px] pr-6 border-r border-border">
         <nav className="space-y-2">
           {SETTINGS.map(({ id, label, path, icon: Icon }) => (
             <NavLink
@@ -48,7 +45,6 @@ function SettingsSidebar({ isOpen, onClose }) {
       {/* Mobile Sidebar */}
       <>
         <aside
-          role="navigation"
           className={`fixed inset-y-0 left-0 w-2/3 max-w-xs bg-card border-r border-border p-6 z-50 shadow-lg
             transition-transform duration-300 ease-in-out ${
               isOpen ? "translate-x-0" : "-translate-x-full"
@@ -56,7 +52,7 @@ function SettingsSidebar({ isOpen, onClose }) {
         >
           <button
             onClick={onClose}
-            aria-label="Close settings sidebar"
+            aria-label="Close settings menu"
             className="absolute top-4 right-4 p-1 rounded text-foreground hover:bg-muted focus:outline-none"
           >
             <XMarkIcon className="size-6" />

@@ -47,7 +47,7 @@ function TaskList({
       {taskFormProps && <TaskForm {...taskFormProps} />}
 
       {/* Tasks List */}
-      <div>
+      <ul>
         {isLoading ? (
           <Loader size={24} className="mt-12" />
         ) : tasks.length === 0 ? (
@@ -65,7 +65,7 @@ function TaskList({
             ))}
           </ul>
         )}
-      </div>
+      </ul>
     </section>
   );
 }
