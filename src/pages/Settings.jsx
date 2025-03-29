@@ -18,7 +18,7 @@ function Settings() {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 md:p-4">
-      <div className="bg-popover border border-border p-6 md:rounded shadow-lg w-full max-w-5xl h-svh md:h-max flex flex-col">
+      <div className="bg-card text-card-foreground border border-border p-6 md:rounded shadow-lg w-full max-w-5xl h-svh md:h-max flex flex-col">
         {/* Header */}
         <SettingsHeader onMenuOpen={() => setIsSidebarOpen(true)} />
 
