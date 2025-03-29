@@ -10,6 +10,7 @@ import {
 import { reauthenticate } from "../helpers/reauthenticate";
 import {
   collection,
+  deleteField,
   doc,
   getDoc,
   getDocs,
@@ -49,6 +50,15 @@ export function ProfileProvider({ children }) {
     await updateDoc(userRef, { profilePicture: newImageUrl });
 
     setProfilePicture(newImageUrl);
+  }
+
+  async function removeProfilePicture() {
+    if (!currentUser) return;
+
+    const userRef = doc(db, "users", currentUser.uid);
+
+    await updateDoc(userRef, { profilePicture: deleteField() });
+    setProfilePicture(null);
   }
 
   function editUsername(displayName) {
@@ -97,6 +107,7 @@ export function ProfileProvider({ children }) {
     currentUser,
     profilePicture,
     updateProfilePicture,
+    removeProfilePicture,
     editUsername,
     editEmail,
     editPassword,

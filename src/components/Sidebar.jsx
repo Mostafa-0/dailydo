@@ -91,7 +91,7 @@ const Sidebar = () => {
 
       {/* Settings Section */}
       {!collapsed && (
-        <div className="text-sm flex flex-col gap-4 p-2">
+        <div className="text-sm flex flex-col gap-2 p-2">
           <NavLink
             to="/"
             onClick={collapseSidebar}

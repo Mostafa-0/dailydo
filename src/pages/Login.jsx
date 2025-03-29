@@ -70,13 +70,13 @@ function Login() {
             required
           />
 
-          <Button variant="primary" type="submit" disabled={loading}>
+          <Button variant="primary" type="submit" disabled={loading} className="h-9">
             {loading ? <Loader size={16} /> : "Log In"}
           </Button>
 
           {error && (
-            <div className="text-sm font-medium text-red-500 flex items-baseline gap-1">
-              <ExclamationCircleIcon className="size-3 text-red-500" />
+            <div className="text-sm font-medium text-destructive flex items-baseline gap-1">
+              <ExclamationCircleIcon className="size-3 text-destructive" />
               {error}
             </div>
           )}

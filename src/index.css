@@ -139,13 +139,6 @@ body:has(.auth-page) {
   background-size: cover;
   background-position: center;
   position: relative;
-  border-image: fill 1
-    linear-gradient(hsla(0, 0%, 83%, 0.4), hsla(0, 0%, 83%, 0.4));
-}
-
-.dark body:has(.auth-page) {
-  border-image: fill 1
-    linear-gradient(hsla(0, 0%, 0%, 0.6), hsla(0, 0%, 0%, 0.6));
 }
 
 body:has(.auth-page)::before {

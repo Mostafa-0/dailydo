@@ -28,6 +28,7 @@ function AccountDetails() {
     currentUser,
     profilePicture,
     updateProfilePicture,
+    removeProfilePicture,
     sendEmailVerification,
     editUsername,
     message,
@@ -126,28 +127,27 @@ function AccountDetails() {
           uploading={uploading}
         />
 
-        <div className="flex flex-wrap gap-2 w-32">
-          <Button
-            variant="secondary"
-            className="text-xs w-full"
-            onClick={() => document.getElementById("profilePic").click()}
-          >
-            Change Photo
-          </Button>
-          <Button
-            variant="danger"
-            className="text-xs w-full"
-            onClick={() => {
-              setSelectedFile(null);
-              setImageUrl(profilePicture);
-            }}
-          >
-            Remove Photo
-          </Button>
+        <div className="flex flex-wrap items-end gap-3 w-full">
+          <div className="flex flex-wrap gap-3">
+            <Button
+              variant="secondary"
+              className="text-xs w-32"
+              onClick={() => document.getElementById("profilePic").click()}
+            >
+              Change Photo
+            </Button>
+            <Button
+              variant="danger"
+              className="text-xs w-32"
+              onClick={removeProfilePicture}
+            >
+              Remove Photo
+            </Button>
+          </div>
           {selectedFile && (
             <Button
               variant="primary"
-              className="text-xs"
+              className="text-xs w-32 lg:ml-auto"
               onClick={(e) => {
                 if (!loading && !uploading) handleSaveChanges(e);
               }}
@@ -257,7 +257,7 @@ function AccountDetails() {
         <Link
           variant=""
           to="delete"
-          className="text-sm text-destructive font-medium"
+          className="text-sm text-destructive font-semibold"
         >
           Delete Account
         </Link>

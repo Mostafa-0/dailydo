@@ -4,7 +4,7 @@ import Loader from "./ui/Loader";
 
 function ProfilePicUploader({ imageUrl, onFileSelect, uploading }) {
   return (
-    <div className="relative flex items-center gap-4">
+    <div className="relative flex items-center gap-4 shrink-0">
       <div className="relative">
         <label htmlFor="profilePic" className="block">
           <div
