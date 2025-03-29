@@ -1,7 +1,7 @@
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import Tooltip from "./ui/Tooltip";
 import Select from "./ui/Select";
-import Loader from "./ui/loader";
+import Loader from "./ui/Loader";
 import TaskForm from "../components/TaskForm";
 
 function TaskList({

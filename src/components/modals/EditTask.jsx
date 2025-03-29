@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 import { Input, Textarea } from "../ui/Inputs";
 import Button from "../ui/Button";
-import { useEffect, useState } from "react";
-import Loader from "../ui/loader";
+import Loader from "../ui/Loader";
 
 function EditTask({
   data,
