@@ -6,7 +6,7 @@ import Button from "@components/ui/Button";
 import { Input } from "@components/ui/Inputs";
 import Popup from "@components/ui/Popup";
 import Loader from "@components/ui/Loader";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import ErrorMessage from "@components/ui/ErrorMessage";
 
 function PasswordReset() {
   const emailRef = useRef();
@@ -47,7 +47,7 @@ function PasswordReset() {
         <form className="grid gap-4" onSubmit={handleSubmit}>
           <h1 className="text-xl sm:text-2xl font-bold">Reset Password</h1>
           <label htmlFor="email" className="sr-only">
-            Email
+            Please enter your Email
           </label>
           <Input
             ref={emailRef}
@@ -61,12 +61,7 @@ function PasswordReset() {
             {loading ? <Loader size={16} /> : "Reset"}
           </Button>
 
-          {error && (
-            <div className="text-sm font-medium text-red-500 flex items-baseline gap-1">
-              <ExclamationCircleIcon className="size-3 text-red-500" />
-              {error}
-            </div>
-          )}
+          {error && <ErrorMessage message={error} />}
         </form>
 
         {!currentUser && (

@@ -4,7 +4,7 @@ import AuthContext from "@context/AuthContext";
 import { Input } from "@components/ui/Inputs";
 import Button from "@components/ui/Button";
 import Loader from "@components/ui/Loader";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import ErrorMessage from "@components/ui/ErrorMessage";
 
 function DeleteAccount() {
   const { deleteAccount } = useContext(AuthContext);
@@ -38,7 +38,7 @@ function DeleteAccount() {
   }, [error]);
   return (
     <form onSubmit={handleSubmit} className="h-full flex flex-col gap-4">
-      <h2 className="mb-0">Delete Account</h2>
+      <h1 className="text-xl font-semibold">Delete Account</h1>
       <p className="text-secondary-foreground">
         Deleting your account is permanent. All your data will be wiped out
         immediately and you won&apos;t be able to get it back.
@@ -59,12 +59,7 @@ function DeleteAccount() {
         />
       </div>
 
-      {error && (
-        <p className="flex items-center gap-1 text-destructive text-sm font-medium">
-          <ExclamationCircleIcon className="size-4" />
-          {error}
-        </p>
-      )}
+      {error && <ErrorMessage message={error} />}
 
       <div className="mt-auto grid grid-cols-2 max-w-xs md:ml-auto gap-3">
         <Button variant="secondary" type="button" onClick={() => navigate(-1)}>

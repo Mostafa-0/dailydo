@@ -6,15 +6,14 @@ function SettingsHeader({ onMenuOpen }) {
 
   return (
     <div className="flex justify-between items-center mb-6">
-      <div className="flex items-center gap-3">
-        <button
-          onClick={onMenuOpen}
-          className="p-1 rounded text-foreground hover:bg-muted focus:outline-none md:hidden"
-        >
-          <Bars3Icon className="size-6" />
-        </button>
-        <h2 className="text-2xl font-bold mb-0">Settings</h2>
-      </div>
+      <button
+        onClick={onMenuOpen}
+        aria-label="Open settings sidebar"
+        className="p-1 rounded text-foreground hover:bg-muted focus:outline-none md:hidden"
+      >
+        <Bars3Icon className="size-6" />
+      </button>
+      <h1 className="text-xl md:text-2xl font-bold mb-0">Settings</h1>
       <button
         onClick={() => navigate("/")}
         className="hover:text-destructive transition ml-2"

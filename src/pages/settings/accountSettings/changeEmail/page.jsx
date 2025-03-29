@@ -4,7 +4,7 @@ import ProfileContext from "@context/ProfileContext";
 import Button from "@components/ui/Button";
 import Loader from "@components/ui/Loader";
 import { Input } from "@components/ui/Inputs";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import ErrorMessage from "@components/ui/ErrorMessage";
 
 function ChangeEmail() {
   const { currentUser, editEmail, setMessage } = useContext(ProfileContext);
@@ -39,7 +39,7 @@ function ChangeEmail() {
 
   return (
     <form onSubmit={handleSubmit} className="h-full flex flex-col gap-4">
-      <h2 className="mb-0">Change Email</h2>
+      <h1 className="text-xl font-semibold">Change Email</h1>
       <div className="grid gap-2 max-w-sm">
         <label htmlFor="email" className="text-sm font-medium">
           Email
@@ -57,10 +57,7 @@ function ChangeEmail() {
       </div>
 
       <div className="grid gap-2 max-w-96">
-        <label
-          htmlFor="password"
-          className="text-sm font-medium"
-        >
+        <label htmlFor="password" className="text-sm font-medium">
           Password
         </label>
         <Input
@@ -74,12 +71,7 @@ function ChangeEmail() {
         </Link>
       </div>
 
-      {error && (
-        <p className="flex items-center gap-1 text-destructive text-sm font-medium">
-          <ExclamationCircleIcon className="size-4" />
-          {error}
-        </p>
-      )}
+      {error && <ErrorMessage message={error} />}
 
       <div className="mt-auto w-full max-w-xs grid grid-cols-2 md:ml-auto gap-3">
         <Button variant="secondary" type="button" onClick={() => navigate(-1)}>

@@ -25,7 +25,7 @@ function ProfilePicUploader({ imageUrl, onFileSelect, uploading }) {
           ) : (
             <img
               src={imageUrl}
-              alt="Profile Picture"
+              alt="User profile"
               className="size-24 rounded-full object-cover bg-gradient-to-bl from-primary via-primary/60 to-primary/30 border-2 border-primary"
             />
           )}

@@ -5,10 +5,8 @@ import Tooltip from "@components/Tooltip";
 import Button from "@components/ui/Button";
 import Loader from "@components/ui/Loader";
 import { Input } from "@components/ui/Inputs";
-import {
-  ExclamationCircleIcon,
-  InformationCircleIcon,
-} from "@heroicons/react/24/solid";
+import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import ErrorMessage from "@components/ui/ErrorMessage";
 
 function ChangePassword() {
   const { editPassword, setMessage } = useContext(ProfileContext);
@@ -54,7 +52,7 @@ function ChangePassword() {
 
   return (
     <form onSubmit={handleSubmit} className="h-full flex flex-col gap-4">
-      <h2 className="mb-0">Change Password</h2>
+      <h1 className="text-xl font-semibold">Change Password</h1>
       <div className="grid gap-2 max-w-sm">
         <label htmlFor="current-password" className="text-sm font-medium">
           Current Password
@@ -98,12 +96,7 @@ function ChangePassword() {
         />
       </div>
 
-      {error && (
-        <p className="flex items-center gap-1 text-destructive text-sm font-medium">
-          <ExclamationCircleIcon className="size-4" />
-          {error}
-        </p>
-      )}
+      {error && <ErrorMessage message={error} />}
 
       <div className="mt-auto grid grid-cols-2 w-full max-w-xs md:ml-auto gap-3">
         <Button variant="secondary" type="button" onClick={() => navigate(-1)}>

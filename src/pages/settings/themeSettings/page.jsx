@@ -39,7 +39,7 @@ function ThemeSettings() {
 
   return (
     <section>
-      <h2 className="text-xl font-semibold">Theme</h2>
+      <h1 className="text-xl font-semibold mb-4">Theme</h1>
       <div className="flex flex-wrap gap-4">
         {themeOptions.map(({ label, value, icon, bgColor }) => (
           <button

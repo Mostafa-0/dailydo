@@ -53,14 +53,15 @@ const Sidebar = () => {
   return (
     <aside
       ref={sidebarRef}
-      className={`h-screen fixed md:static border-r transition-all duration-300 flex flex-col gap-4 z-40 ${
+      role="navigation"
+      className={`h-screen p-3 fixed md:static border-r transition-all duration-300 flex flex-col gap-4 z-40 ${
         collapsed
           ? "w-16 border-transparent -mr-16"
           : "w-64 bg-card shadow-sm border-border"
       }`}
     >
       {/* Sidebar Header */}
-      <header className="px-3 py-4">
+      <header className="mb-4">
         <div className="flex items-center justify-between">
           {!collapsed && (
             <Clock className="flex-shrink-0 whitespace-nowrap overflow-hidden" />
@@ -91,7 +92,7 @@ const Sidebar = () => {
 
       {/* Settings Section */}
       {!collapsed && (
-        <div className="text-sm flex flex-col gap-2 p-2">
+        <nav className="text-sm flex flex-col gap-2">
           <NavLink
             to="/"
             onClick={collapseSidebar}
@@ -124,7 +125,7 @@ const Sidebar = () => {
           >
             <ArrowRightStartOnRectangleIcon className="size-5" /> Sign Out
           </button>
-        </div>
+        </nav>
       )}
     </aside>
   );

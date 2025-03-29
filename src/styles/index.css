@@ -1,0 +1,114 @@
+@import url("./theme.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar */
+@supports (scrollbar-width: thin) {
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted), 0.7) transparent;
+  }
+}
+
+/* WebKit Browsers (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  min-height: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted), 0.7);
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(var(--muted), 0.8);
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+/* Safari-Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+  .custom-scrollbar {
+    scrollbar-width: auto; /* Ensures Safari doesn’t remove the scrollbar */
+  }
+}
+
+/* Fallback for browsers without scrollbar-width support */
+@supports not (scrollbar-width: thin) {
+  .custom-scrollbar {
+    overflow: auto;
+  }
+}
+
+* {
+  font-family: "Montserrat", Helvetica, sans-serif;
+}
+
+body {
+  @apply text-sm lg:text-base;
+}
+
+body {
+  background-image: url('data:image/svg+xml,<svg id="visual" viewBox="0 0 900 600" width="900" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="none" stroke="%2324788f" stroke-width="2" stroke-opacity="0.2"><circle r="145" cx="600" cy="455"></circle><circle r="63" cx="534" cy="127"></circle><circle r="64" cx="859" cy="302"></circle><circle r="100" cx="248" cy="406"></circle><circle r="78" cx="97" cy="39"></circle><circle r="118" cx="845" cy="8"></circle><circle r="121" cx="6" cy="589"></circle></g></svg>');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+body:has(.auth-page) {
+  background-image: url('data:image/svg+xml,%3Csvg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath fill-rule="evenodd" fill-opacity="0.2" clip-rule="evenodd" d="M675.8 0H0V135.8L0.841003 135.872C102.66 144.648 204.342 153.412 292.4 194C380.7 234.7 455.3 307.4 516.9 383.1C578.5 458.8 627.1 537.4 666.1 624.1C705.1 710.478 734.549 804.915 763.973 899.273L764.2 900H1440V764.2C1347.8 739.9 1255.6 715.6 1156.4 684.6C1057.2 653.6 951 615.8 899.7 540.3C866.82 492.003 856.446 428.278 845.883 363.393C839.934 326.847 833.924 289.933 823.8 255.2C795.648 159.063 735.903 79.769 676.104 0.403931L675.8 0Z" fill="%2324788F"/%3E%3C/svg%3E');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+@supports (backdrop-filter: blur(80px)) or (-webkit-backdrop-filter: blur(80px)) {
+  body:has(.auth-page)::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    -webkit-backdrop-filter: blur(80px); /* Safari */
+    backdrop-filter: blur(80px); /* Other browsers */
+  }
+}
+
+main {
+  @apply px-4 sm:px-6 md:px-8 py-4 md:py-8;
+}
+
+main:has(.auth-page) {
+  @apply p-0;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.4rem);
+}
+
+h2 {
+  @apply text-xl font-semibold mb-4;
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.auth-link {
+  @apply w-fit text-primary hover:border-primary border-b border-transparent hover:border-b;
+}

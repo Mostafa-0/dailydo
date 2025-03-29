@@ -3,6 +3,7 @@ import ModalWrapper from "@components/ModalWrapper";
 import Button from "@components/ui/Button";
 import Loader from "@components/ui/Loader";
 import { Input, Textarea } from "@components/ui/Inputs";
+import ErrorMessage from "@components/ui/ErrorMessage";
 
 function EditTaskModal({
   data,
@@ -68,8 +69,9 @@ function EditTaskModal({
             className={titleError ? "border-2 border-destructive" : ""}
           />
           {titleError && (
-            <p className="text-sm font-medium text-destructive">{titleError}</p>
+            <ErrorMessage message={titleError} />
           )}
+
         </div>
 
         <div className="grid gap-2">
@@ -140,9 +142,7 @@ function EditTaskModal({
         </div>
 
         <div className="grid gap-2">
-          {error && (
-            <p className="text-sm font-medium text-destructive">{error}</p>
-          )}
+          {error && <ErrorMessage message={error} />}
           <Button variant="primary" type="submit" className="min-h-9">
             {loading ? <Loader size={16} /> : "Update"}
           </Button>

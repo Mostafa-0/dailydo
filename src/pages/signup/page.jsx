@@ -5,7 +5,7 @@ import IntroSection from "@components/IntroSection";
 import Button from "@components/ui/Button";
 import Loader from "@components/ui/Loader";
 import { Input } from "@components/ui/Inputs";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import ErrorMessage from "@components/ui/ErrorMessage";
 
 function Signup() {
   const { currentUser, signup } = useContext(AuthContext);
@@ -66,7 +66,6 @@ function Signup() {
             placeholder="Name"
             ref={nameRef}
             required
-            autoFocus
           />
           <label htmlFor="email" className="sr-only">
             Email
@@ -114,12 +113,7 @@ function Signup() {
             {loading ? <Loader size={16} /> : "Sign Up"}
           </Button>
 
-          {error && (
-            <div className="text-sm font-medium text-destructive flex items-baseline gap-1">
-              <ExclamationCircleIcon className="size-3 text-destructive" />
-              {error}
-            </div>
-          )}
+          {error && <ErrorMessage message={error} />}
         </form>
 
         <div className="flex gap-2 font-medium my-4">

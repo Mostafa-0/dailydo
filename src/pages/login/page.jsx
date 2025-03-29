@@ -5,7 +5,7 @@ import Button from "@components/ui/Button";
 import IntroSection from "@components/IntroSection";
 import { Input } from "@components/ui/Inputs";
 import Loader from "@components/ui/Loader";
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
+import ErrorMessage from "@components/ui/ErrorMessage";
 
 function Login() {
   const { currentUser, login } = useContext(AuthContext);
@@ -55,7 +55,6 @@ function Login() {
             placeholder="Email"
             onChange={handleChange}
             required
-            autoFocus
           />
           <label htmlFor="password" className="sr-only">
             Password
@@ -70,16 +69,16 @@ function Login() {
             required
           />
 
-          <Button variant="primary" type="submit" disabled={loading} className="h-9">
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={loading}
+            className="h-9"
+          >
             {loading ? <Loader size={16} /> : "Log In"}
           </Button>
 
-          {error && (
-            <div className="text-sm font-medium text-destructive flex items-baseline gap-1">
-              <ExclamationCircleIcon className="size-3 text-destructive" />
-              {error}
-            </div>
-          )}
+          {error && <ErrorMessage message={error} />}
         </form>
 
         <div className="flex gap-2 justify-between items-center flex-wrap my-4 font-medium">
