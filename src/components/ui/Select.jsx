@@ -1,5 +1,5 @@
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useEffect, useRef, useState } from "react";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 function Select({ label, options, setValue, className }) {
   const [showOptions, setShowOptions] = useState(false);

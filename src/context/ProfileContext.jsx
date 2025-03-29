@@ -1,5 +1,8 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { auth } from "../firebase/auth";
+import { auth } from "@firebaseConfig/auth";
+import { db } from "@firebaseConfig/firestore";
+import AuthContext from "./AuthContext";
+import { reauthenticate } from "@helpers/reauthenticate";
 import {
   updateProfile,
   sendEmailVerification,
@@ -7,7 +10,6 @@ import {
   verifyBeforeUpdateEmail,
   deleteUser,
 } from "firebase/auth";
-import { reauthenticate } from "../helpers/reauthenticate";
 import {
   collection,
   deleteField,
@@ -17,8 +19,6 @@ import {
   updateDoc,
   writeBatch,
 } from "firebase/firestore";
-import { db } from "../firebase/firestore";
-import AuthContext from "./AuthContext";
 
 const ProfileContext = createContext();
 

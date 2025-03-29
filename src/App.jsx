@@ -7,20 +7,20 @@ import {
   RouterProvider,
   useLocation,
 } from "react-router-dom";
-import Home from "./pages/Home";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import PasswordReset from "./pages/PasswordReset";
-import PrivateRoute from "./pages/PrivateRoute";
-import Providers from "./context/Providers";
-import NotFound from "./pages/NotFound";
-import Settings from "./pages/Settings";
-import Account from "./pages/Account";
-import ChangePassword from "./pages/ChangePassword";
-import ChangeEmail from "./pages/ChangeEmail";
-import Sidebar from "./components/Sidebar";
-import DeleteAccount from "./pages/DeleteAccount";
-import ThemeSettings from "./pages/ThemeSettings";
+import Home from "@pages/home/page";
+import Login from "@pages/login/page";
+import Signup from "@pages/signup/page";
+import PasswordReset from "@pages/passwordReset/page";
+import Providers from "@context/Providers";
+import Settings from "@pages/settings/page";
+import ThemeSettings from "@pages/settings/themeSettings/page";
+import AccountSettings from "@pages/settings/accountSettings/page";
+import ChangeEmail from "@pages/settings/accountSettings/changeEmail/page";
+import ChangePassword from "@pages/settings/accountSettings/changePassword/page";
+import DeleteAccount from "@pages/settings/accountSettings/deleteAccount/page";
+import Sidebar from "@components/Sidebar";
+import PrivateRoute from "./PrivateRoute";
+import NotFound from "./NotFound";
 
 const Layout = () => {
   const location = useLocation();
@@ -70,7 +70,7 @@ const App = () => {
           }
         >
           <Route index element={<Navigate to="account" replace />} />
-          <Route path="account" element={<Account />}>
+          <Route path="account" element={<AccountSettings />}>
             <Route path="email" element={<ChangeEmail />} />
             <Route path="password" element={<ChangePassword />} />
             <Route path="delete" element={<DeleteAccount />} />

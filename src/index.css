@@ -135,7 +135,7 @@ body {
 }
 
 body:has(.auth-page) {
-  background-image: url(./assets/blob.svg);
+  background-image: url('data:image/svg+xml,%3Csvg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath fill-rule="evenodd" fill-opacity="0.4" clip-rule="evenodd" d="M675.8 0H0V135.8L0.841003 135.872C102.66 144.648 204.342 153.412 292.4 194C380.7 234.7 455.3 307.4 516.9 383.1C578.5 458.8 627.1 537.4 666.1 624.1C705.1 710.478 734.549 804.915 763.973 899.273L764.2 900H1440V764.2C1347.8 739.9 1255.6 715.6 1156.4 684.6C1057.2 653.6 951 615.8 899.7 540.3C866.82 492.003 856.446 428.278 845.883 363.393C839.934 326.847 833.924 289.933 823.8 255.2C795.648 159.063 735.903 79.769 676.104 0.403931L675.8 0Z" fill="%2324788F"/%3E%3C/svg%3E');
   background-size: cover;
   background-position: center;
   position: relative;

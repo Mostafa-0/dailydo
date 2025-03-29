@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { db } from "../firebase/firestore";
+import { db } from "@firebaseConfig/firestore";
+import AuthContext from "./AuthContext";
+import { resetDailiesIfNeeded } from "@helpers/resetDailies";
 import {
   addDoc,
   collection,
@@ -13,8 +15,6 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
-import AuthContext from "./AuthContext";
-import { resetDailiesIfNeeded } from "../helpers/resetDailies";
 
 export const DailiesContext = createContext();
 

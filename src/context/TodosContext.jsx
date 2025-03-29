@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { db } from "../firebase/firestore";
+import { db } from "@firebaseConfig/firestore";
+import AuthContext from "./AuthContext";
 import {
   collection,
   addDoc,
@@ -11,7 +12,6 @@ import {
   query,
   orderBy,
 } from "firebase/firestore";
-import AuthContext from "./AuthContext";
 
 export const TodosContext = createContext();
 

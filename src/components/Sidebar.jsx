@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "@context/AuthContext";
 import Clock from "./Clock";
 import {
   ArrowRightStartOnRectangleIcon,

@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { auth } from "../firebase/auth";
-import { db } from "../firebase/firestore";
+import { auth } from "@firebaseConfig/auth";
+import { db } from "@firebaseConfig/firestore";
+import { reauthenticate } from "@helpers/reauthenticate";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -11,7 +12,6 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { reauthenticate } from "../helpers/reauthenticate";
 
 const AuthContext = createContext();
 
