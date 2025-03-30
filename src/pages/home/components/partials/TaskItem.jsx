@@ -50,9 +50,10 @@ function TaskItem({
 
           {dueDate && (
             <p
-              className={`flex items-center gap-1 text-xs md:text-sm text-muted-foreground ${textStyle}`}
+              className={`flex items-center gap-1 text-xs md:text-sm text-muted-foreground tracking-wide ${textStyle}`}
             >
-              <CalendarDaysIcon className="size-3" /> Due {dueDate}
+              <CalendarDaysIcon className="size-3" /> Due{" "}
+              {new Date(dueDate).toLocaleDateString()}
             </p>
           )}
         </div>

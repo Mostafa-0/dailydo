@@ -4,6 +4,7 @@ import Button from "@components/ui/Button";
 import Loader from "@components/ui/Loader";
 import { Input, Textarea } from "@components/ui/Inputs";
 import ErrorMessage from "@components/ui/ErrorMessage";
+import DatePicker from "@components/ui/DatePicker";
 
 function EditTaskModal({
   data,
@@ -68,10 +69,7 @@ function EditTaskModal({
             maxLength={80}
             className={titleError ? "border-2 border-destructive" : ""}
           />
-          {titleError && (
-            <ErrorMessage message={titleError} />
-          )}
-
+          {titleError && <ErrorMessage message={titleError} />}
         </div>
 
         <div className="grid gap-2">
@@ -104,8 +102,7 @@ function EditTaskModal({
                 Clear
               </button>
             </div>
-            <Input
-              type="date"
+            <DatePicker
               name="dueDate"
               id="dueDate"
               value={data.dueDate}
