@@ -8,11 +8,21 @@ function TodoList({ className }) {
   const [statusFilter, setStatusFilter] = useState("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
   const [dueDateFilter, setDueDateFilter] = useState("none");
-
   const [taskTitle, setTaskTitle] = useState("");
 
+  const sortedTodos = useMemo(() => {
+    return [...todos].sort((a, b) => {
+      // Move completed tasks to the bottom
+      if (a.status === "completed" && b.status !== "completed") return 1;
+      if (b.status === "completed" && a.status !== "completed") return -1;
+
+      // Sort by createdAt (newest first)
+      return (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0);
+    });
+  }, [todos]);
+
   const filteredTodos = useMemo(() => {
-    let filtered = [...todos];
+    let filtered = [...sortedTodos];
 
     if (statusFilter !== "all") {
       filtered = filtered.filter((todo) => todo.status === statusFilter);
@@ -35,7 +45,7 @@ function TodoList({ className }) {
     }
 
     return filtered;
-  }, [todos, statusFilter, priorityFilter, dueDateFilter]);
+  }, [sortedTodos, statusFilter, priorityFilter, dueDateFilter]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

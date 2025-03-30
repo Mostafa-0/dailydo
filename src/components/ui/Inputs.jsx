@@ -14,7 +14,7 @@ export const Textarea = React.forwardRef(({ className, ...props }, ref) => {
   return (
     <textarea
       ref={ref}
-      className={`${baseClass} ${className || ""} max-h-60`}
+      className={`${baseClass} ${className || ""} max-h-52`}
       {...props}
     ></textarea>
   );

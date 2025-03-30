@@ -23,7 +23,7 @@ function TaskItem({
   return (
     <div className="group relative bg-card dark:bg-card flex justify-between items-center min-h-[72px] h-max rounded-lg shadow-sm shadow-secondary hover:shadow-secondary hover:shadow-lg transition duration-300 overflow-hidden">
       <div
-        className={`absolute inset-0 ${priorityBg} bg-opacity-10 dark:bg-opacity-10`}
+        className={`absolute inset-0 ${priorityBg} bg-opacity-10 dark:bg-opacity-10 pointer-events-none`}
       ></div>
 
       <TickButton status={status} priority={priority} onClick={onCheck} />
@@ -60,7 +60,7 @@ function TaskItem({
       </button>
 
       <div
-        className={`absolute w-full h-1 bottom-0 inset-x-0 ${priorityBg} opacity-60 dark:opacity-80`}
+        className={`absolute w-full h-1 bottom-0 inset-x-0 ${priorityBg} opacity-75 dark:opacity-75 pointer-events-none`}
       ></div>
     </div>
   );

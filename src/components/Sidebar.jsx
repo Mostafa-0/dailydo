@@ -23,7 +23,7 @@ const Sidebar = () => {
       if (
         sidebarRef.current &&
         !sidebarRef.current.contains(event.target) &&
-        window.innerWidth < 768 // Close only on mobile (md breakpoint)
+        window.innerWidth < 1280
       ) {
         setCollapsed(true);
       }
@@ -54,9 +54,9 @@ const Sidebar = () => {
     <aside
       ref={sidebarRef}
       role="navigation"
-      className={`h-screen p-3 fixed md:static border-r transition-all duration-300 flex flex-col gap-4 z-40 ${
+      className={`h-screen p-3 fixed xl:static border-r transition-all duration-300 flex flex-col gap-4 z-40 ${
         collapsed
-          ? "w-16 border-transparent -mr-16"
+          ? "w-16 border-transparent -mr-16 pointer-events-none"
           : "w-64 bg-card shadow-sm border-border"
       }`}
     >
@@ -67,7 +67,7 @@ const Sidebar = () => {
             <Clock className="flex-shrink-0 whitespace-nowrap overflow-hidden" />
           )}
           <button
-            className="fill-muted-foreground hover:fill-foreground bg-secondary hover:bg-muted rounded transition p-2 ml-1 sm:ml-3 md:ml-4"
+            className="fill-muted-foreground hover:fill-foreground bg-secondary hover:bg-muted rounded transition p-2 ml-1 sm:ml-3 md:ml-4 relative z-50 pointer-events-auto"
             onClick={() => setCollapsed(!collapsed)}
             aria-label="Toggle Sidebar"
           >

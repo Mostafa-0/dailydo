@@ -9,6 +9,31 @@ function DailiesList({ className }) {
   const [priorityFilter, setPriorityFilter] = useState("all");
   const [dailyTitle, setDailyTitle] = useState("");
 
+  const sortedDailies = useMemo(() => {
+    return [...dailies].sort((a, b) => {
+      // Move completed tasks to the bottom
+      if (a.status === "completed" && b.status !== "completed") return 1;
+      if (b.status === "completed" && a.status !== "completed") return -1;
+
+      // Sort by createdAt (newest first)
+      return (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0);
+    });
+  }, [dailies]);
+
+  const filteredDailies = useMemo(() => {
+    let filtered = [...sortedDailies];
+
+    if (statusFilter !== "all") {
+      filtered = filtered.filter((daily) => daily.status === statusFilter);
+    }
+
+    if (priorityFilter !== "all") {
+      filtered = filtered.filter((daily) => daily.priority === priorityFilter);
+    }
+
+    return filtered;
+  }, [sortedDailies, statusFilter, priorityFilter]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (dailyTitle.trim().length < 1) {
@@ -23,20 +48,6 @@ function DailiesList({ className }) {
       setDailyTitle("");
     }
   };
-
-  const filteredDailies = useMemo(() => {
-    let filtered = [...dailies];
-
-    if (statusFilter !== "all") {
-      filtered = filtered.filter((daily) => daily.status === statusFilter);
-    }
-
-    if (priorityFilter !== "all") {
-      filtered = filtered.filter((daily) => daily.priority === priorityFilter);
-    }
-
-    return filtered;
-  }, [dailies, statusFilter, priorityFilter]);
 
   return (
     <TaskList

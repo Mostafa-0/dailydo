@@ -5,6 +5,7 @@ import Loader from "@components/ui/Loader";
 import { Input, Textarea } from "@components/ui/Inputs";
 import ErrorMessage from "@components/ui/ErrorMessage";
 import DatePicker from "@components/ui/DatePicker";
+import { TrashIcon } from "@heroicons/react/24/solid";
 
 function EditTaskModal({
   data,
@@ -54,7 +55,7 @@ function EditTaskModal({
       title="Edit Task"
       onClose={() => setShowModal(false)}
     >
-      <form className="flex flex-col gap-5" onSubmit={handleFormSubmit}>
+      <form className="flex flex-col gap-4" onSubmit={handleFormSubmit}>
         <div className="grid gap-2">
           <label htmlFor="title" className="font-semibold">
             Title
@@ -66,9 +67,12 @@ function EditTaskModal({
             value={data.title}
             placeholder="Your task goes here.."
             onChange={handleTitleChange}
-            maxLength={80}
+            maxLength={100}
             className={titleError ? "border-2 border-destructive" : ""}
           />
+          <p className="text-muted-foreground text-xs ml-auto">
+            {data.title.length} / 100
+          </p>
           {titleError && <ErrorMessage message={titleError} />}
         </div>
 
@@ -82,8 +86,11 @@ function EditTaskModal({
             value={data.description}
             placeholder="Describe your task.."
             onChange={onChange}
-            maxLength={140}
+            maxLength={300}
           />
+          <p className="text-muted-foreground text-xs ml-auto">
+            {data.description.length} / 300
+          </p>
         </div>
 
         {dueDate && (
@@ -138,18 +145,17 @@ function EditTaskModal({
           </div>
         </div>
 
-        <div className="grid gap-2">
+        <div className="grid grid-cols-2 gap-2 mt-4">
           {error && <ErrorMessage message={error} />}
-          <Button variant="primary" type="submit" className="min-h-9">
-            {loading ? <Loader size={16} /> : "Update"}
-          </Button>
           <Button
             variant="danger"
-            type="button"
             onClick={handleDelete}
-            className="min-h-9"
+            className="min-h-9 gap-1"
           >
-            Delete
+            <TrashIcon className="size-4" /> Delete
+          </Button>
+          <Button variant="primary" type="submit" className="min-h-9">
+            {loading ? <Loader size={16} /> : "Save"}
           </Button>
         </div>
       </form>

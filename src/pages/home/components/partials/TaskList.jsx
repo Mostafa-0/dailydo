@@ -17,37 +17,36 @@ function TaskList({
 }) {
   return (
     <section
-      className={`${className} flex flex-col gap-6 min-h-96 bg-card border border-border rounded-lg p-4 md:p-6 shadow-sm`}
+      className={`${className} flex flex-col gap-6 min-h-96 bg-card border border-border rounded-lg p-4 md:p-6 my-4 shadow-sm`}
     >
-      <header className="flex justify-between items-center pb-4 border-b border-border">
+      <header className="flex flex-col gap-4 pb-6 border-b border-border">
         <div className="flex gap-4 items-center">
           <h2 className="mb-0">{title}</h2>
           <Tooltip text={tooltip}>
             <InformationCircleIcon className="size-5 text-muted-foreground" />
           </Tooltip>
         </div>
+        {/* Filtering Methods */}
+        {sortMethods.length > 0 && (
+          <div className="flex flex-wrap gap-4">
+            {sortMethods.map(({ label, options, setValue }) => (
+              <Select
+                key={label}
+                label={label}
+                options={options}
+                setValue={setValue}
+                className="grow max-w-40"
+              />
+            ))}
+          </div>
+        )}
       </header>
-
-      {/* Filtering Methods */}
-      {sortMethods.length > 0 && (
-        <div className="flex flex-wrap gap-4">
-          {sortMethods.map(({ label, options, setValue }) => (
-            <Select
-              key={label}
-              label={label}
-              options={options}
-              setValue={setValue}
-              className="grow sm:max-w-36"
-            />
-          ))}
-        </div>
-      )}
 
       {/* Task Form */}
       {taskFormProps && <TaskForm {...taskFormProps} />}
 
       {/* Tasks List */}
-      <ul>
+      <div>
         {isLoading ? (
           <Loader size={24} className="mt-12" />
         ) : tasks.length === 0 ? (
@@ -61,11 +60,13 @@ function TaskList({
         ) : (
           <ul className="grid gap-4">
             {filteredTasks.map((task, index) => (
-              <li key={index}>{renderTaskItem(task)}</li>
+              <li key={index} className="overflow-hidden">
+                {renderTaskItem(task)}
+              </li>
             ))}
           </ul>
         )}
-      </ul>
+      </div>
     </section>
   );
 }

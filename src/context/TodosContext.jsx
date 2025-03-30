@@ -10,7 +10,6 @@ import {
   onSnapshot,
   serverTimestamp,
   query,
-  orderBy,
 } from "firebase/firestore";
 
 export const TodosContext = createContext();
@@ -27,10 +26,7 @@ export const TodosProvider = ({ children }) => {
       return;
     }
 
-    const todosRef = query(
-      collection(db, `users/${userId}/todos`),
-      orderBy("createdAt", "desc")
-    );
+    const todosRef = query(collection(db, `users/${userId}/todos`));
 
     setLoadingTodos(true);
 

@@ -16,17 +16,16 @@ function Select({ label, options, setValue, className }) {
 
     if (showOptions) {
       document.addEventListener("click", handleClickOutside);
-    } else {
-      document.removeEventListener("click", handleClickOutside);
+      return () => document.removeEventListener("click", handleClickOutside);
     }
-
-    return () => document.removeEventListener("click", handleClickOutside);
   }, [showOptions]);
 
   // Handle option selection
   const handleSelect = (option) => {
-    setSelectedOption(option.label);
-    setValue(option.value);
+    if (selectedOption !== option.label) {
+      setSelectedOption(option.label);
+      setValue(option.value);
+    }
     setShowOptions(false);
   };
 
@@ -36,13 +35,19 @@ function Select({ label, options, setValue, className }) {
       <button
         ref={selectRef}
         aria-label={label}
+        aria-haspopup="listbox"
         aria-expanded={showOptions}
+        aria-controls="dropdown-options"
         onClick={() => setShowOptions((prev) => !prev)}
         className="relative h-9 text-sm font-medium px-3 py-2 rounded bg-input border border-border 
         focus:outline-none focus:ring-2 focus:ring-primary flex justify-between items-center gap-4 w-full transition-all"
       >
         {/* Show placeholder if no option is selected */}
-        <span className={showOptions || selectedOption ? "hidden" : "block"}>
+        <span
+          className={`${selectedOption ? "hidden" : "block"} ${
+            showOptions ? "opacity-0" : "opacity-100"
+          }`}
+        >
           {label}
         </span>
         {selectedOption && <span>{selectedOption}</span>}
@@ -70,21 +75,25 @@ function Select({ label, options, setValue, className }) {
 
       {/* Dropdown Menu */}
       {showOptions && (
-        <ul
+        <div
+          id="dropdown-options"
+          role="listbox"
           className="absolute top-12 min-w-max w-full text-sm font-medium rounded bg-input border border-border 
           min-h-12 z-30 p-1 shadow-md"
         >
           {options.map((option, index) => (
-            <li key={index} className="hover:bg-secondary rounded-md">
-              <button
-                className="size-full text-left px-3 py-[6px] w-full"
-                onClick={() => handleSelect(option)}
-              >
-                {option.label}
-              </button>
-            </li>
+            <button
+              type="button"
+              key={index}
+              role="option"
+              aria-selected={selectedOption === option.label}
+              onClick={() => handleSelect(option)}
+              className="block w-full text-left hover:bg-secondary rounded-md cursor-pointer px-3 py-[6px]"
+            >
+              {option.label}
+            </button>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

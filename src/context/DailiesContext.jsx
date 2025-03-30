@@ -9,7 +9,6 @@ import {
   doc,
   getDoc,
   onSnapshot,
-  orderBy,
   query,
   serverTimestamp,
   setDoc,
@@ -33,10 +32,7 @@ export const DailiesProvider = ({ children }) => {
 
     resetDailiesIfNeeded(userId);
 
-    const dailiesRef = query(
-      collection(db, `users/${userId}/dailies`),
-      orderBy("createdAt", "desc")
-    );
+    const dailiesRef = query(collection(db, `users/${userId}/dailies`));
 
     setLoadingDailies(true);
 

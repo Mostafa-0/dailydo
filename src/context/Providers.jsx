@@ -3,7 +3,7 @@ import { TodosProvider } from "./TodosContext";
 import { DailiesProvider } from "./DailiesContext";
 import { ThemeProvider } from "./ThemeContext";
 import { ProfileProvider } from "./ProfileContext";
-import { TaskListProvider } from "./TaskListContext ";
+import { TaskListProvider } from "./TaskListContext";
 
 function Providers({ children }) {
   return (

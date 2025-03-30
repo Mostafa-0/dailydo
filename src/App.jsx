@@ -27,16 +27,11 @@ const Layout = () => {
   const noAuthPaths = ["/login", "/signup", "/passwordReset"];
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen">
       {/* Sidebar (only visible when user is authenticated) */}
       {!noAuthPaths.includes(location.pathname) && <Sidebar />}
-
       {/* Main content area */}
-      <main
-        className={`flex-1 overflow-y-auto ${
-          !noAuthPaths.includes(location.pathname) && "mt-12"
-        }`}
-      >
+      <main className="flex-1 overflow-y-auto">
         <Outlet />
       </main>
     </div>

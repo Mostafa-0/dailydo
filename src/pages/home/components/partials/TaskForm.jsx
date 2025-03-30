@@ -13,12 +13,12 @@ function TaskForm({ label, placeholder, name, value, onChange, onSubmit }) {
         <Input
           type="text"
           id={id}
-          maxLength={80}
+          maxLength={100}
           placeholder={placeholder}
           name={name}
           value={value}
           onChange={onChange}
-          className="w-full p-3"
+          className="w-full p-3 pr-12"
         />
         <button
           type="submit"
