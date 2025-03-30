@@ -12,9 +12,9 @@ const TickButton = ({ status, priority, onClick }) => {
   };
 
   const hoverFillColors = {
-    low: "group-hover/tick:fill-green-600",
-    medium: "group-hover/tick:fill-yellow-500",
-    high: "group-hover/tick:fill-red-600",
+    low: "lg:group-hover/tick:fill-green-600",
+    medium: "lg:group-hover/tick:fill-yellow-500",
+    high: "lg:group-hover/tick:fill-red-600",
   };
 
   const isCompleted = status === "completed";

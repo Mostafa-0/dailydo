@@ -4,7 +4,6 @@ import Button from "@components/ui/Button";
 import Loader from "@components/ui/Loader";
 import { Input, Textarea } from "@components/ui/Inputs";
 import ErrorMessage from "@components/ui/ErrorMessage";
-import DatePicker from "@components/ui/DatePicker";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
 function EditTaskModal({
@@ -109,7 +108,8 @@ function EditTaskModal({
                 Clear
               </button>
             </div>
-            <DatePicker
+            <Input
+              type="date"
               name="dueDate"
               id="dueDate"
               value={data.dueDate}

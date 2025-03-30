@@ -10,7 +10,7 @@ function Home() {
   return (
     <>
       <h1 className="sr-only">Home</h1>
-      <div className="grid items-start lg:grid-cols-2 gap-8 py-12">
+      <div className="grid items-start lg:grid-cols-2 gap-8 py-12 h-full">
         <DailiesList
           className={visibleList == "dailies" ? "flex" : "hidden lg:flex"}
         />

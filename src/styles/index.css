@@ -3,40 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Default Custom Scrollbar */
-@supports (scrollbar-width: thin) {
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--muted), 0.7) transparent;
-  }
-}
-
-/* WebKit Browsers (Chrome, Safari, Edge) */
-*::-webkit-scrollbar {
-  width: 5px;
-  min-height: 10px;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--muted), 0.7);
-  border-radius: 8px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background-color: hsla(var(--muted), 0.8);
-}
-
-*::-webkit-scrollbar-track {
-  background: inherit;
-}
-
-/* Fallback for browsers without scrollbar-width support */
-@supports not (scrollbar-width: thin) {
-  * {
-    overflow: auto;
-  }
-}
-
 * {
   font-family: "Montserrat", Helvetica, sans-serif;
 }
@@ -100,4 +66,44 @@ input::-webkit-inner-spin-button {
 
 .auth-link {
   @apply w-fit text-primary hover:border-primary border-b border-transparent hover:border-b;
+}
+
+/* Custom Scrollbar for WebKit Browsers */
+::-webkit-scrollbar {
+  width: 7px;
+  min-height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted) / 0.7);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(var(--muted) / 1);
+}
+
+/* Default hidden scrollbar visible on hover */
+.hover-scrollbar::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.hover-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* On hover */
+.hover-scrollbar:hover::-webkit-scrollbar {
+  background-color: initial;
+}
+
+.hover-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted) / 0.7);
+}
+
+/* Inverting the date picker icon on dark modes */
+.dark input[type="date"]::-webkit-calendar-picker-indicator,
+.dim input[type="date"]::-webkit-calendar-picker-indicator,
+.midnight input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }

@@ -17,7 +17,7 @@ function TaskList({
 }) {
   return (
     <section
-      className={`${className} flex flex-col gap-6 min-h-96 bg-card border border-border rounded-lg p-4 md:p-6 my-4 shadow-sm`}
+      className={`${className} h-full flex flex-col gap-6 min-h-96 bg-card border border-border rounded-lg p-4 md:p-6 my-4 shadow-sm`}
     >
       <header className="flex flex-col gap-4 pb-6 border-b border-border">
         <div className="flex gap-4 items-center">
@@ -46,7 +46,7 @@ function TaskList({
       {taskFormProps && <TaskForm {...taskFormProps} />}
 
       {/* Tasks List */}
-      <div>
+      <div className="overflow-auto hover-scrollbar">
         {isLoading ? (
           <Loader size={24} className="mt-12" />
         ) : tasks.length === 0 ? (
@@ -60,7 +60,7 @@ function TaskList({
         ) : (
           <ul className="grid gap-4">
             {filteredTasks.map((task, index) => (
-              <li key={index} className="overflow-hidden">
+              <li key={index} className="overflow-x-hidden">
                 {renderTaskItem(task)}
               </li>
             ))}
