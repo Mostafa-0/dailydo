@@ -17,7 +17,7 @@ function TaskList({
 }) {
   return (
     <section
-      className={`${className} h-full flex flex-col gap-6 min-h-96 bg-card border border-border rounded-lg p-4 md:p-6 my-4 shadow-sm`}
+      className={`${className} max-h-full flex flex-col gap-6 min-h-96 bg-card border border-border rounded-lg p-4 md:p-6 my-4 shadow-sm`}
     >
       <header className="flex flex-col gap-4 pb-6 border-b border-border">
         <div className="flex gap-4 items-center">
@@ -46,27 +46,23 @@ function TaskList({
       {taskFormProps && <TaskForm {...taskFormProps} />}
 
       {/* Tasks List */}
-      <div className="overflow-auto hover-scrollbar">
-        {isLoading ? (
-          <Loader size={24} className="mt-12" />
-        ) : tasks.length === 0 ? (
-          <p className="w-fit m-auto mt-12 text-sm text-muted-foreground">
-            Looks like you have no {title}, start adding one!
-          </p>
-        ) : filteredTasks.length === 0 ? (
-          <p className="w-fit m-auto mt-12 text-sm text-muted-foreground">
-            No matching {title}.
-          </p>
-        ) : (
-          <ul className="grid gap-4">
-            {filteredTasks.map((task, index) => (
-              <li key={index} className="overflow-x-hidden">
-                {renderTaskItem(task)}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {isLoading ? (
+        <Loader size={24} className="mt-12" />
+      ) : tasks.length === 0 ? (
+        <p className="w-fit m-auto mt-12 text-sm text-muted-foreground">
+          Looks like you have no {title}, start adding one!
+        </p>
+      ) : filteredTasks.length === 0 ? (
+        <p className="w-fit m-auto mt-12 text-sm text-muted-foreground">
+          No matching {title}.
+        </p>
+      ) : (
+        <ul className="grid gap-4 overflow-y-auto hover-scrollbar pb-4">
+          {filteredTasks.map((task, index) => (
+            <li key={index}>{renderTaskItem(task)}</li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

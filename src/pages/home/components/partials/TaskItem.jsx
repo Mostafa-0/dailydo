@@ -20,8 +20,16 @@ function TaskItem({
   const isCompleted = status === "completed";
   const textStyle = isCompleted ? "line-through text-muted-foreground" : "";
 
+  const getTextClass = (text) => {
+    const maxWordLength = 30;
+    const hasLongWord = text
+      .split(" ")
+      .some((word) => word.length > maxWordLength);
+    return hasLongWord ? "break-all" : "break-words";
+  };
+
   return (
-    <div className="group relative bg-card dark:bg-card flex justify-between items-center min-h-[72px] h-max rounded-lg shadow-sm shadow-secondary hover:shadow-secondary hover:shadow-lg transition duration-300 overflow-hidden">
+    <div className="group relative bg-card flex justify-between items-center min-h-[72px] h-max rounded-lg shadow-sm shadow-secondary hover:shadow-secondary hover:shadow-lg transition duration-300 overflow-hidden">
       <div
         className={`absolute inset-0 ${priorityBg} bg-opacity-10 dark:bg-opacity-10 pointer-events-none`}
       ></div>
@@ -35,14 +43,18 @@ function TaskItem({
         <div>
           <h3
             title={title}
-            className={`text-sm md:text-base font-medium ${textStyle}`}
+            className={`text-sm md:text-base font-medium ${getTextClass(
+              title
+            )} ${textStyle}`}
           >
             {title}
           </h3>
 
           {description && (
             <p
-              className={`text-xs md:text-sm text-muted-foreground ${textStyle}`}
+              className={`text-xs md:text-sm text-muted-foreground ${getTextClass(
+                title
+              )} ${textStyle}`}
             >
               {description}
             </p>
