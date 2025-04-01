@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { TaskListContext } from "@context/TaskListContext";
-import DailiesList from "./components/sections/DailiesList";
-import TodoList from "./components/sections/TodoList";
-import TaskSegmentedControl from "./components/partials/TaskSegmentedControl";
+import DailiesList from "@components/home/sections/DailiesList";
+import TodoList from "@components/home/sections/TodoList";
+import TaskSegmentedControl from "@components/home/partials/TaskSegmentedControl";
 
 function Home() {
   const { visibleList } = useContext(TaskListContext);

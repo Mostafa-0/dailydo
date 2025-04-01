@@ -1,10 +1,10 @@
 import { Outlet, useLocation } from "react-router-dom";
-import ProfilePictureSection from "./components/ProfilePictureSection";
-import UsernameSection from "./components/UsernameSection";
-import EmailSection from "./components/EmailSection";
-import JoinedDateSection from "./components/JoinedDateSection";
-import PasswordSection from "./components/PasswordSection";
-import DeleteAccountSection from "./components/DeleteAccountSection";
+import ProfilePictureSection from "@components/accountSettings/ProfilePictureSection";
+import UsernameSection from "@components/accountSettings/UsernameSection";
+import EmailSection from "@components/accountSettings/EmailSection";
+import JoinedDateSection from "@components/accountSettings/JoinedDateSection";
+import PasswordSection from "@components/accountSettings/PasswordSection";
+import DeleteAccountSection from "@components/accountSettings/DeleteAccountSection";
 
 function AccountSettings() {
   const location = useLocation();

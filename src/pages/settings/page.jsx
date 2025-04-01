@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import SettingsHeader from "./components/SettingsHeader";
-import SettingsSidebar from "./components/SettingsSidebar";
+import SettingsHeader from "@components/settings/SettingsHeader";
+import SettingsSidebar from "@components/settings/SettingsSidebar";
 
 function Settings() {
   const navigate = useNavigate();

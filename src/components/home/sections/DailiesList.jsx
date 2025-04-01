@@ -58,7 +58,7 @@ function DailiesList({ className }) {
         {
           label: "Status",
           options: [
-            { label: "All", value: "all" },
+            { label: "All", value: "all", default: true },
             { label: "Completed", value: "completed" },
             { label: "Pending", value: "pending" },
           ],
@@ -67,7 +67,7 @@ function DailiesList({ className }) {
         {
           label: "Priority",
           options: [
-            { label: "All", value: "all" },
+            { label: "All", value: "all", default: true },
             { label: "Low", value: "low" },
             { label: "Medium", value: "medium" },
             { label: "High", value: "high" },

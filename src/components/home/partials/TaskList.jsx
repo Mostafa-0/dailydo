@@ -19,7 +19,7 @@ function TaskList({
     <section
       className={`${className} max-h-full flex flex-col gap-6 min-h-96 bg-card border border-border rounded-lg p-4 md:p-6 my-4 shadow-sm`}
     >
-      <header className="flex flex-col gap-4 pb-6 border-b border-border">
+      <header className="flex justify-between gap-4 pb-6 border-b border-border">
         <div className="flex gap-4 items-center">
           <h2 className="mb-0">{title}</h2>
           <Tooltip text={tooltip}>
@@ -28,17 +28,17 @@ function TaskList({
         </div>
         {/* Filtering Methods */}
         {sortMethods.length > 0 && (
-          <div className="flex flex-wrap gap-4">
-            {sortMethods.map(({ label, options, setValue }) => (
-              <Select
-                key={label}
-                label={label}
-                options={options}
-                setValue={setValue}
-                className="grow max-w-40"
-              />
-            ))}
-          </div>
+          <Select
+            label="Filters"
+            groups={sortMethods}
+            setValue={(groupLabel, value) => {
+              const method = sortMethods.find((m) => m.label === groupLabel);
+              if (method && method.setValue) {
+                method.setValue(value);
+              }
+            }}
+            className="grow max-w-40"
+          />
         )}
       </header>
 

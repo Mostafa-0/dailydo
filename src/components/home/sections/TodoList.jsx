@@ -72,7 +72,7 @@ function TodoList({ className }) {
         {
           label: "Status",
           options: [
-            { label: "All", value: "all" },
+            { label: "All", value: "all", default: true },
             { label: "Completed", value: "completed" },
             { label: "Pending", value: "pending" },
           ],
@@ -81,7 +81,7 @@ function TodoList({ className }) {
         {
           label: "Priority",
           options: [
-            { label: "All", value: "all" },
+            { label: "All", value: "all", default: true },
             { label: "Low", value: "low" },
             { label: "Medium", value: "medium" },
             { label: "High", value: "high" },
@@ -91,7 +91,7 @@ function TodoList({ className }) {
         {
           label: "Due Date",
           options: [
-            { label: "None", value: "none" },
+            { label: "None", value: "none", default: true },
             { label: "Earliest First", value: "earliest" },
             { label: "Latest First", value: "latest" },
           ],
