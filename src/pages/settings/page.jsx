@@ -30,7 +30,7 @@ function Settings() {
           />
 
           {/* Content */}
-          <div className="w-full md:h-[480px] md:px-6 overflow-y-auto overflow-x-hidden">
+          <div className="w-full md:h-[68svh] md:px-6 overflow-y-auto overflow-x-hidden">
             <Outlet />
           </div>
         </div>
